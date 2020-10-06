@@ -1,0 +1,12 @@
+Mulino Grande:
+- file MTL: https://threejsfundamentals.org/threejs/resources/models/windmill_2/windmill-fixed.mtl
+- file OBJ: https://threejsfundamentals.org/threejs/resources/models/windmill_2/windmill.obj
+Mulino Piccolo:
+- file MTL: https://threejsfundamentals.org/threejs/resources/models/windmill/windmill-fixed.mtl
+- file OBJ: https://threejsfundamentals.org/threejs/resources/models/windmill/windmill.obj
+Libro:
+- file OBJ: https://webglfundamentals.org/webgl/resources/models/book-vertex-chameleon-study/book.obj
+Cubo:
+- file OBJ: https://webglfundamentals.org/webgl/resources/models/cube/cube.obj
+Sedia:
+- file OBJ: https://webglfundamentals.org/webgl/resources/models/chair/chair.obj
