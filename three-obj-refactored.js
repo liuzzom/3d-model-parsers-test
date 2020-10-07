@@ -31,11 +31,11 @@ function frameArea(sizeToFitOnScreen, boxSize, boxCenter, camera) {
   camera.lookAt(boxCenter.x, boxCenter.y, boxCenter.z);
 }
 
-function renderModelWithMaterial(scene, camera, controls) {
+function renderModelWithMaterial(objectPath, materialPath, scene, camera, controls) {
 
   {
     const mtlLoader = new MTLLoader();
-    mtlLoader.load('https://threejsfundamentals.org/threejs/resources/models/windmill_2/windmill-fixed.mtl', (mtlParseResult) => {
+    mtlLoader.load(materialPath, (mtlParseResult) => {
       const objLoader = new OBJLoader2();
       const materials = MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
       if (materials.Material) {
@@ -43,7 +43,7 @@ function renderModelWithMaterial(scene, camera, controls) {
         materials.Material.side = THREE.DoubleSide;
       }
       objLoader.addMaterials(materials);
-      objLoader.load('https://threejsfundamentals.org/threejs/resources/models/windmill_2/windmill.obj', (root) => {
+      objLoader.load(objectPath, (root) => {
         scene.add(root);
 
         // compute the box that contains all the stuff
@@ -87,11 +87,11 @@ function renderModelWithMaterial(scene, camera, controls) {
   }
 }
 
-function renderModelWithoutMaterial(scene, camera, controls) {
+function renderModelWithoutMaterial(objectPath, scene, camera, controls) {
 
   {
     const objLoader = new OBJLoader2();
-    objLoader.load('/public/donut.obj', (root) => {
+    objLoader.load(objectPath, (root) => {
       scene.add(root);
       // compute the box that contains all the stuff
       // from root and below
@@ -132,8 +132,8 @@ function renderModelWithoutMaterial(scene, camera, controls) {
   }
 }
 
-function renderModel() {
-  const canvas = document.querySelector('#c');
+function renderModel(modelParams) {
+  const canvas = document.querySelector(modelParams.selector);
   const renderer = new THREE.WebGLRenderer({ canvas });
 
   const fov = 45;
@@ -148,7 +148,12 @@ function renderModel() {
   controls.update();
 
   const scene = new THREE.Scene();
-  scene.background = new THREE.Color('black');
+  if (modelParams.background){
+    scene.background = new THREE.Color(modelParams.background);
+  } else {
+    scene.background = new THREE.Color('#333333');
+  }
+  
 
   {
     const skyColor = 0xB1E1FF;  // light blue
@@ -167,8 +172,11 @@ function renderModel() {
     scene.add(light.target);
   }
 
-  renderModelWithMaterial(scene, camera, controls);
-  // renderModelWithoutMaterial(scene, camera, controls);
+  if (modelParams.materialPath) {
+    renderModelWithMaterial(modelParams.objectPath, modelParams.materialPath, scene, camera, controls);
+  } else {
+    renderModelWithoutMaterial(modelParams.objectPath, scene, camera, controls);
+  }
 
   function resizeRendererToDisplaySize(renderer) {
     const canvas = renderer.domElement;
@@ -198,5 +206,10 @@ function renderModel() {
 
 }
 
-// TODO: fare refactor e togliere più variabili harc-coded possibili
-renderModel();
+// TODO: vedere come viene gestita la dimensione del canvas
+renderModel({
+  selector : '#c',
+  objectPath: 'https://threejsfundamentals.org/threejs/resources/models/windmill_2/windmill.obj',
+  materialPath: 'https://threejsfundamentals.org/threejs/resources/models/windmill_2/windmill-fixed.mtl',
+  background: 'black'
+});
