@@ -8,7 +8,7 @@ app.listen(port, () => {
 });
 
 app.get('/', (req, res) => {
-    res.send('Hello World!');
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.get('/webgl-obj.html', function (req, res) {

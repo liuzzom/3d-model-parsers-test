@@ -151,6 +151,7 @@ function renderModel(modelParams) {
   if (modelParams.background){
     scene.background = new THREE.Color(modelParams.background);
   } else {
+    // set default color
     scene.background = new THREE.Color('#333333');
   }
   

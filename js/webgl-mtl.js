@@ -550,7 +550,7 @@ async function main() {
   const cameraTarget = [0, 0, 0];
   // figure out how far away to move the camera so we can likely
   // see the object.
-  const radius = m4.length(range) * 0.5;
+  const radius = m4.length(range) * 1.2;
   const cameraPosition = m4.addVectors(cameraTarget, [
     0,
     0,
