@@ -36,8 +36,7 @@ function parseOBJ(text) {
     let material = 'default';
     let object = 'default';
 
-    const noop = () => {
-    };
+    const noop = () => { };
 
     function newGeometry() {
         // If there is an existing geometry and it's
@@ -112,7 +111,6 @@ function parseOBJ(text) {
             setGeometry();
             const numTriangles = parts.length - 2;
             for (let tri = 0; tri < numTriangles; ++tri) {
-                // addVertex(parts[tri]);
                 addVertex(parts[0]);
                 addVertex(parts[tri + 1]);
                 addVertex(parts[tri + 2]);
@@ -227,9 +225,7 @@ async function main() {
     // compiles and links the shaders, looks up attribute and uniform locations
     const meshProgramInfo = webglUtils.createProgramInfo(gl, [vs, fs]);
 
-    // const response = await fetch('https://webglfundamentals.org/webgl/resources/models/cube/cube.obj'); // Cubo
-    // const response = await fetch('https://webglfundamentals.org/webgl/resources/models/chair/chair.obj'); // Sedia
-    const response = await fetch('https://webglfundamentals.org/webgl/resources/models/book-vertex-chameleon-study/book.obj'); // Libro
+    const response = await fetch('https://webglfundamentals.org/webgl/resources/models/windmill/windmill.obj'); // Mulino
     // const response = await fetch('./public/donut.obj'); // Ciambella
     const text = await response.text();
     const obj = parseOBJ(text);

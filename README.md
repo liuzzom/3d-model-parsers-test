@@ -28,6 +28,8 @@ Test per la comparazione di parser Javascript di file OBJ. Sono stati creati tra
     - Modifica posizione camera webgl-mtl.js (const radius = m4.length(range) * 1.2;)
 - 10/10/2020-02:
     - Aggiornamento README
+- 14/10/2020-01:
+    - Creazione a-frame-obj
 
 ## Fonti
 - WebGL Load Obj
@@ -38,6 +40,5 @@ Test per la comparazione di parser Javascript di file OBJ. Sono stati creati tra
       https://threejsfundamentals.org/threejs/lessons/threejs-load-obj.html
 
 ## TODO
-- Relazione Parses Three.js
-- Parser A-Frame
 - Relazione Parser A-Frame
+- Risoluzione Problema Gestione .MTL A-Frame

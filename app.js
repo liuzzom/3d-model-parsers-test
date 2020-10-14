@@ -26,5 +26,10 @@ app.get('/three-obj.html', function (req, res) {
     res.sendFile(path.join(__dirname, 'three-obj.html'));
 });
 
+app.get('/a-frame-obj.html', function (req, res) {
+    console.log('request for a-frame-obj.html');
+    res.sendFile(path.join(__dirname, 'a-frame-obj.html'));
+});
+
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(express.static('.'));
