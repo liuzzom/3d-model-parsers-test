@@ -11,12 +11,12 @@
 <body>
   <a-scene>
     <a-assets>
-      <a-asset-item id="crate-obj" src="https://threejsfundamentals.org/threejs/resources/models/windmill/windmill.obj"></a-asset-item>
-      <a-asset-item id="crate-mtl" src="https://threejsfundamentals.org/threejs/resources/models/windmill/windmill-fixed.mtl"></a-asset-item>
+      <a-asset-item id="object-ref" src="https://threejsfundamentals.org/threejs/resources/models/windmill/windmill.obj"></a-asset-item>
+      <a-asset-item id="material-ref" src="https://threejsfundamentals.org/threejs/resources/models/windmill/windmill-fixed.mtl"></a-asset-item>
     </a-assets>
 
     <!-- Using the asset management system. -->
-    <a-obj-model src="#crate-obj" mtl="#crate-mtl" position="0 0 -15" rotation="0 -90 0"></a-obj-model>
+    <a-obj-model src="#object-ref" mtl="#material-ref" position="0 0 -15" rotation="0 0 0"></a-obj-model>
 
     <a-camera>
       <a-cursor></a-cursor>

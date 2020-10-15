@@ -40,5 +40,6 @@ Test per la comparazione di parser Javascript di file OBJ. Sono stati creati tra
       https://threejsfundamentals.org/threejs/lessons/threejs-load-obj.html
 
 ## TODO
+- Task definiti nella mail
 - Relazione Parser A-Frame
 - Risoluzione Problema Gestione .MTL A-Frame

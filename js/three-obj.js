@@ -210,7 +210,7 @@ function renderModel(modelParams) {
 // TODO: vedere come viene gestita la dimensione del canvas
 renderModel({
   selector : '#c',
-  objectPath: 'https://threejsfundamentals.org/threejs/resources/models/windmill_2/windmill.obj',
-  materialPath: 'https://threejsfundamentals.org/threejs/resources/models/windmill_2/windmill-fixed.mtl',
+  objectPath: 'https://threejsfundamentals.org/threejs/resources/models/windmill/windmill.obj',
+  materialPath: 'https://threejsfundamentals.org/threejs/resources/models/windmill/windmill-fixed.mtl',
   background: 'black'
 });
