@@ -5,19 +5,15 @@ Test per la comparazione di parser Javascript di file OBJ. Sono stati creati tra
 - A-Frame (Coming Soon)
 
 ## WebGL
-### File .OBJ senza .MTL
-- html: https://github.com/liuzzom/obj-parser-test/blob/main/webgl-obj.html
-- js: https://github.com/liuzzom/obj-parser-test/blob/main/js/webgl-obj.js
-### File .OBJ con .MTL
-- html: https://github.com/liuzzom/obj-parser-test/blob/main/webgl-mtl.html
+- html: https://github.com/liuzzom/obj-parser-test/blob/main/webgl/webgl-obj.html
 - js: https://github.com/liuzzom/obj-parser-test/blob/main/js/webgl-mtl.js
 
 ## Three.js
-- html: https://github.com/liuzzom/obj-parser-test/blob/main/three-obj.html
-- js: https://github.com/liuzzom/obj-parser-test/blob/main/js/three-obj.js
+- html: https://github.com/liuzzom/obj-parser-test/blob/main/threejs/three-obj.html
+- js: https://github.com/liuzzom/obj-parser-test/blob/main/threejs/js/three-obj.js
 
 ## A-Frame (Coming Soon...)
-- html:
+- html: https://github.com/liuzzom/obj-parser-test/blob/main/a-frame/a-frame-obj.html
 
 ## Elenco Modifiche
 - 10/10/2020-01:
@@ -47,7 +43,6 @@ Test per la comparazione di parser Javascript di file OBJ. Sono stati creati tra
 
 ## TODO
 - Task definiti nella mail
-- Aggiornare link readme.md
 - Vedere funzionamento Camera e rotazione WebGL
 - Relazione Parser A-Frame
 - Analisi Problema Gestione .MTL A-Frame
