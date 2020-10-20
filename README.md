@@ -6,7 +6,7 @@ Test per la comparazione di parser Javascript di file OBJ. Sono stati creati tra
 
 ## WebGL
 - html: https://github.com/liuzzom/obj-parser-test/blob/main/webgl/webgl-obj.html
-- js: https://github.com/liuzzom/obj-parser-test/blob/main/js/webgl-mtl.js
+- js: https://github.com/liuzzom/obj-parser-test/blob/main/webgl/js/webgl-obj.js
 
 ## Three.js
 - html: https://github.com/liuzzom/obj-parser-test/blob/main/threejs/three-obj.html
