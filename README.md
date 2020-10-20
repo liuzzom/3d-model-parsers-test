@@ -18,7 +18,6 @@ Test per la comparazione di parser Javascript di file OBJ. Sono stati creati tra
 
 ## A-Frame (Coming Soon...)
 - html:
-- js:
 
 ## Elenco Modifiche
 - 10/10/2020-01:
@@ -30,6 +29,13 @@ Test per la comparazione di parser Javascript di file OBJ. Sono stati creati tra
     - Aggiornamento README
 - 14/10/2020-01:
     - Creazione a-frame-obj
+- 15/10/2020-01:
+    - Rimozione Esempio OBJ senza MTL
+    - Utilizzo di File OBJ e MTL locali
+- 20/10/2020-01:
+    - Modifica struttura delle cartelle
+    - Modifica alla creazione del piano d'appoggio nel parser Three.js (Creata funzione addPlane)
+    - Modifica ai parametri dell'oggetto nella chiamata a renderModel (Parser Three.js)
 
 ## Fonti
 - WebGL Load Obj
@@ -41,5 +47,7 @@ Test per la comparazione di parser Javascript di file OBJ. Sono stati creati tra
 
 ## TODO
 - Task definiti nella mail
+- Aggiornare link readme.md
+- Vedere funzionamento Camera e rotazione WebGL
 - Relazione Parser A-Frame
-- Risoluzione Problema Gestione .MTL A-Frame
+- Analisi Problema Gestione .MTL A-Frame

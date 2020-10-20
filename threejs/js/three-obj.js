@@ -4,7 +4,6 @@ import { OBJLoader2 } from 'https://threejsfundamentals.org/threejs/resources/th
 import { MTLLoader } from 'https://threejsfundamentals.org/threejs/resources/threejs/r119/examples/jsm/loaders/MTLLoader.js';
 import { MtlObjBridge } from 'https://threejsfundamentals.org/threejs/resources/threejs/r119/examples/jsm/loaders/obj2/bridge/MtlObjBridge.js';
 
-// TODO: vedere a che serve e come funziona
 function frameArea(sizeToFitOnScreen, boxSize, boxCenter, camera) {
   const halfSizeToFitOnScreen = sizeToFitOnScreen * 0.5;
   const halfFovY = THREE.MathUtils.degToRad(camera.fov * .5);
@@ -31,68 +30,44 @@ function frameArea(sizeToFitOnScreen, boxSize, boxCenter, camera) {
   camera.lookAt(boxCenter.x, boxCenter.y, boxCenter.z);
 }
 
-function renderModelWithMaterial(objectPath, materialPath, scene, camera, controls) {
+function addPlane(boxSize, scene, planeColor) {
+  // Plane
+  const planeSize = boxSize * 2;
 
-  {
-    const mtlLoader = new MTLLoader();
-    mtlLoader.load(materialPath, (mtlParseResult) => {
-      const objLoader = new OBJLoader2();
-      const materials = MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
-      if (materials.Material) {
-        console.log(materials.Material);
-        materials.Material.side = THREE.DoubleSide;
-      }
-      objLoader.addMaterials(materials);
-      objLoader.load(objectPath, (root) => {
-        scene.add(root);
+  // Texture Example
+  // const loader = new THREE.TextureLoader();
+  // const texture = loader.load('https://threejsfundamentals.org/threejs/resources/images/checker.png');
+  // texture.wrapS = THREE.RepeatWrapping;
+  // texture.wrapT = THREE.RepeatWrapping;
+  // texture.magFilter = THREE.NearestFilter;
+  // const repeats = 20;
+  // texture.repeat.set(repeats, repeats);
 
-        // compute the box that contains all the stuff
-        // from root and below
-        const box = new THREE.Box3().setFromObject(root);
-
-        const boxSize = box.getSize(new THREE.Vector3()).length();
-        const boxCenter = box.getCenter(new THREE.Vector3());
-
-        // set the camera to frame the box
-        frameArea(boxSize * 1.2, boxSize, boxCenter, camera);
-
-        // update the Trackball controls to handle the new size
-        controls.maxDistance = boxSize * 10;
-        controls.target.copy(boxCenter);
-        controls.update();
-
-
-        // PAVIMENTO
-        // const planeSize = boxSize * 2;
-        // console.log(planeSize);
-
-        // const loader = new THREE.TextureLoader();
-        // const texture = loader.load('https://threejsfundamentals.org/threejs/resources/images/checker.png');
-        // texture.wrapS = THREE.RepeatWrapping;
-        // texture.wrapT = THREE.RepeatWrapping;
-        // texture.magFilter = THREE.NearestFilter;
-        // const repeats = 20;
-        // texture.repeat.set(repeats, repeats);
-
-        // const planeGeo = new THREE.PlaneBufferGeometry(planeSize, planeSize);
-        // const planeMat = new THREE.MeshPhongMaterial({
-        //   map: texture,
-        //   side: THREE.DoubleSide,
-        // });
-        // const mesh = new THREE.Mesh(planeGeo, planeMat);
-        // mesh.rotation.x = Math.PI * -.5;
-        // scene.add(mesh);
-      });
-    });
-  }
+  const planeGeo = new THREE.PlaneBufferGeometry(planeSize, planeSize);
+  const planeMat = new THREE.MeshPhongMaterial({
+    //   map: texture, // If you want to use textured plane
+    color: planeColor, // Used for a monochromatic plane
+    side: THREE.DoubleSide,
+  });
+  const mesh = new THREE.Mesh(planeGeo, planeMat);
+  mesh.rotation.x = Math.PI * -.5;
+  mesh.position.y = -0.2; // FIX: hardcoded value
+  scene.add(mesh);
 }
 
-function renderModelWithoutMaterial(objectPath, scene, camera, controls) {
-
-  {
+function renderModelWithMaterial(objectPath, materialPath, usePlane, planeColor, scene, camera, controls) {
+  const mtlLoader = new MTLLoader();
+  mtlLoader.load(materialPath, (mtlParseResult) => {
     const objLoader = new OBJLoader2();
+    const materials = MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
+    if (materials.Material) {
+      materials.Material.side = THREE.DoubleSide;
+    }
+    objLoader.addMaterials(materials);
     objLoader.load(objectPath, (root) => {
+      console.log(root);
       scene.add(root);
+
       // compute the box that contains all the stuff
       // from root and below
       const box = new THREE.Box3().setFromObject(root);
@@ -108,28 +83,47 @@ function renderModelWithoutMaterial(objectPath, scene, camera, controls) {
       controls.target.copy(boxCenter);
       controls.update();
 
-      // PAVIMENTO
-      // const planeSize = boxSize * 2;
-      // console.log(planeSize);
-
-      // const loader = new THREE.TextureLoader();
-      // const texture = loader.load('https://threejsfundamentals.org/threejs/resources/images/checker.png');
-      // texture.wrapS = THREE.RepeatWrapping;
-      // texture.wrapT = THREE.RepeatWrapping;
-      // texture.magFilter = THREE.NearestFilter;
-      // const repeats = 20;
-      // texture.repeat.set(repeats, repeats);
-
-      // const planeGeo = new THREE.PlaneBufferGeometry(planeSize, planeSize);
-      // const planeMat = new THREE.MeshPhongMaterial({
-      //   map: texture,
-      //   side: THREE.DoubleSide,
-      // });
-      // const mesh = new THREE.Mesh(planeGeo, planeMat);
-      // mesh.rotation.x = Math.PI * -.5;
-      // scene.add(mesh);
+      if (usePlane) {
+        if (planeColor) {
+          addPlane(boxSize, scene, planeColor);
+        } else {
+          addPlane(boxSize, scene, '#1A1A1A')
+        }
+      }
     });
-  }
+  });
+}
+
+function renderModelWithoutMaterial(objectPath, usePlane, planeColor, scene, camera, controls) {
+
+  const objLoader = new OBJLoader2();
+  objLoader.load(objectPath, (root) => {
+    scene.add(root);
+    // compute the box that contains all the stuff
+    // from root and below
+    const box = new THREE.Box3().setFromObject(root);
+
+    const boxSize = box.getSize(new THREE.Vector3()).length();
+    const boxCenter = box.getCenter(new THREE.Vector3());
+
+    // set the camera to frame the box
+    frameArea(boxSize * 1.2, boxSize, boxCenter, camera);
+
+    // update the Trackball controls to handle the new size
+    controls.maxDistance = boxSize * 10;
+    controls.target.copy(boxCenter);
+    controls.update();
+
+    if (usePlane) {
+      if (planeColor) {
+        addPlane(boxSize, scene, planeColor);
+      } else {
+        addPlane(boxSize, scene, '#1A1A1A')
+      }
+    }
+
+  });
+
 }
 
 function renderModel(modelParams) {
@@ -148,13 +142,13 @@ function renderModel(modelParams) {
   controls.update();
 
   const scene = new THREE.Scene();
-  if (modelParams.background){
+  if (modelParams.background) {
     scene.background = new THREE.Color(modelParams.background);
   } else {
     // set default color
     scene.background = new THREE.Color('#333333');
   }
-  
+
 
   {
     const skyColor = 0xB1E1FF;  // light blue
@@ -174,9 +168,9 @@ function renderModel(modelParams) {
   }
 
   if (modelParams.materialPath) {
-    renderModelWithMaterial(modelParams.objectPath, modelParams.materialPath, scene, camera, controls);
+    renderModelWithMaterial(modelParams.objectPath, modelParams.materialPath, modelParams.usePlane, modelParams.planeColor, scene, camera, controls);
   } else {
-    renderModelWithoutMaterial(modelParams.objectPath, scene, camera, controls);
+    renderModelWithoutMaterial(modelParams.objectPath, modelParams.usePlane, modelParams.planeColor, scene, camera, controls);
   }
 
   function resizeRendererToDisplaySize(renderer) {
@@ -207,10 +201,11 @@ function renderModel(modelParams) {
 
 }
 
-// TODO: vedere come viene gestita la dimensione del canvas
 renderModel({
-  selector : '#c',
-  objectPath: 'https://threejsfundamentals.org/threejs/resources/models/windmill/windmill.obj',
-  materialPath: 'https://threejsfundamentals.org/threejs/resources/models/windmill/windmill-fixed.mtl',
-  background: 'black'
+  selector: '#c',
+  objectPath: '../public/windmill.obj',
+  materialPath: '../public/windmill-fixed.mtl',
+  background: 'black',
+  usePlane: true,
+  planeColor: '#1A1A1A'
 });

@@ -212,7 +212,7 @@ function parseMTL(text) {
         const parts = line.split(/\s+/).slice(1);
         const handler = keywords[keyword];
         if (!handler) {
-            console.warn('unhandled keyword:', keyword);  // eslint-disable-line no-console
+            console.warn('unhandled keyword:', keyword);
             continue;
         }
         handler(parts, unparsedArgs);
@@ -411,7 +411,7 @@ async function main() {
     // compiles and links the shaders, looks up attribute and uniform locations
     const meshProgramInfo = webglUtils.createProgramInfo(gl, [vs, fs]);
 
-    const objHref = 'https://webglfundamentals.org/webgl/resources/models/windmill/windmill.obj';
+    const objHref = '../public/windmill.obj';
     const response = await fetch(objHref);
     const text = await response.text();
     const obj = parseOBJ(text);
