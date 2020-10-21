@@ -60,12 +60,21 @@ function renderModelWithMaterial(objectPath, materialPath, usePlane, planeColor,
   mtlLoader.load(materialPath, (mtlParseResult) => {
     const objLoader = new OBJLoader2();
     const materials = MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
-    if (materials.Material) {
-      materials.Material.side = THREE.DoubleSide;
+    
+    // Set the material called "Material" as double-sided
+    // Efficient but strongly coupled with the actual mtl file
+    // if (materials.Material) {
+    //   materials.Material.side = THREE.DoubleSide;
+    // }
+
+    // Set EVERY material as double-sided
+    // Works for every mtl file (or at least it should) but makes the rendering process heavier
+    for (const material of Object.values(materials)) {
+      material.side = THREE.DoubleSide;
     }
+
     objLoader.addMaterials(materials);
     objLoader.load(objectPath, (root) => {
-      console.log(root);
       scene.add(root);
 
       // compute the box that contains all the stuff
