@@ -212,8 +212,8 @@ function renderModel(modelParams) {
 
 renderModel({
   selector: '#c',
-  objectPath: '../public/windmill.obj',
-  materialPath: '../public/windmill-fixed.mtl',
+  objectPath: '../public/Windmill/windmill.obj',
+  materialPath: '../public/Windmill/windmill-fixed.mtl',
   background: 'black',
   usePlane: true,
   planeColor: '#1A1A1A'

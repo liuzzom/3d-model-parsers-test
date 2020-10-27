@@ -411,8 +411,17 @@ async function main() {
     // compiles and links the shaders, looks up attribute and uniform locations
     const meshProgramInfo = webglUtils.createProgramInfo(gl, [vs, fs]);
 
-    const objHref = '../public/windmill.obj';
+    const objHref = '../public/Windmill/windmill.obj';
     const response = await fetch(objHref);
+
+    if (response.status !== 200) {
+        console.error("ERROR: Returned a non-200 code");
+        if (response.status === 404) {
+            console.error("ERROR: OBJ file not found");
+        }
+        return;
+    }
+
     const text = await response.text();
     const obj = parseOBJ(text);
     const baseHref = new URL(objHref, window.location.href);
@@ -570,7 +579,10 @@ async function main() {
 
         webglUtils.resizeCanvasToDisplaySize(gl.canvas);
         gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
+
+        gl.clearColor(0, 0, 0, 1); // Background Color
         gl.enable(gl.DEPTH_TEST);
+        gl.clear(gl.COLOR_BUFFER_BIT);
 
         const fieldOfViewRadians = degToRad(60);
         const aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;

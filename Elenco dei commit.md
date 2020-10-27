@@ -17,4 +17,8 @@
   - Modifica ai parametri dell'oggetto nella chiamata a renderModel (Parser Three.js)
 - 21/10/2020:
   - Modifica al parser Three.js con Double-Side per ogni materiale
-  
+- 27/10/2020:
+  - Modifica alla struttura della cartella dei modelli
+  - Inserimento esempi BabylonJS:
+    - Esempio OBJ
+    - Esempio glTF

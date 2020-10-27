@@ -6,6 +6,9 @@ const port = 3000;
 var aframeDir = 'a-frame';
 var threejsDir = 'threejs'
 var webglDir = 'webgl';
+var babylonDir = 'babylonjs';
+var babylonObjDir = path.join(babylonDir, 'babylon-obj');
+var babylonglTFDir = path.join(babylonDir, 'babylon-glTF');
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
@@ -29,8 +32,20 @@ app.get('/three-obj.html', function (req, res) {
 
 app.get('/a-frame-obj.html', function (req, res) {
     console.log('request for a-frame-obj.html');
-    res.sendFile(path.join(__dirname, 'a-frame', 'a-frame-obj.html'));
+    res.sendFile(path.join(__dirname, aframeDir, 'a-frame-obj.html'));
     console.log('redirect to ' + path.join(__dirname, aframeDir, 'a-frame-obj.html'));
+});
+
+app.get('/babylon-obj.html', function (req, res) {
+    console.log('request for babylon-obj.html');
+    res.sendFile(path.join(__dirname, babylonObjDir, 'babylon-obj.html'));
+    console.log('redirect to ' + path.join(__dirname, babylonObjDir, 'babylon-obj.html'));
+});
+
+app.get('/babylon-glTF.html', function (req, res) {
+    console.log('request for babylon-glTF.html');
+    res.sendFile(path.join(__dirname, babylonglTFDir, 'babylon-glTF.html'));
+    console.log('redirect to ' + path.join(__dirname, babylonglTFDir, 'babylon-glTF.html'));
 });
 
 app.use('/public', express.static(path.join(__dirname, 'public')));
