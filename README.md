@@ -1,8 +1,9 @@
-# obj-parser-test
+# 3d-model-parsers-test
 Test per la comparazione di parser Javascript di file OBJ. Sono stati creati tramite:
 - WebGL
 - Three.js
-- A-Frame (Coming Soon)
+- A-Frame
+- BabylonJS
 
 ## WebGL
 - html: https://github.com/liuzzom/obj-parser-test/blob/main/webgl/webgl-obj.html
@@ -12,11 +13,19 @@ Test per la comparazione di parser Javascript di file OBJ. Sono stati creati tra
 - html: https://github.com/liuzzom/obj-parser-test/blob/main/threejs/three-obj.html
 - js: https://github.com/liuzzom/obj-parser-test/blob/main/threejs/js/three-obj.js
 
-## A-Frame (Coming Soon...)
+## A-Frame
 - html: https://github.com/liuzzom/obj-parser-test/blob/main/a-frame/a-frame-obj.html
 
+## BabylonJS (OBJ)
+- html: https://github.com/liuzzom/obj-parser-test/blob/main/babylonjs/babylon-obj/babylon-obj.html
+- js: https://github.com/liuzzom/obj-parser-test/blob/main/babylonjs/babylon-obj/js/babylon-obj.js
+
+## BabylonJS (glTF)
+- html: https://github.com/liuzzom/obj-parser-test/blob/main/babylonjs/babylon-glTF/babylon-glTF.html
+- js: https://github.com/liuzzom/obj-parser-test/blob/main/babylonjs/babylon-glTF/js/babylon-glTF.js
+
 ## Elenco Modifiche
-- TODO Inserire link
+- https://github.com/liuzzom/obj-parser-test/blob/main/Elenco%20dei%20commit.md
 
 ## Fonti
 - WebGL Load Obj
@@ -27,8 +36,6 @@ Test per la comparazione di parser Javascript di file OBJ. Sono stati creati tra
       https://threejsfundamentals.org/threejs/lessons/threejs-load-obj.html
 
 ## TODO
-- Task definiti nella mail
-    - Studiare Babylon.JS
 - Vedere funzionamento Camera e rotazione WebGL
 - Analisi Problema Gestione .MTL A-Frame
     - Segnalazione su Github
