@@ -25,3 +25,5 @@
 - 29/10/2020-01:
   - Modifica struttura cartella ThreeJS
   - Aggiunto esempio glTF Three.JS
+- 29/10/2020-02:
+  - Refactor Esempio glTF ThreeJS
