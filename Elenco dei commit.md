@@ -22,3 +22,6 @@
   - Inserimento esempi BabylonJS:
     - Esempio OBJ
     - Esempio glTF
+- 29/10/2020-01:
+  - Modifica struttura cartella ThreeJS
+  - Aggiunto esempio glTF Three.JS

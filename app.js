@@ -4,8 +4,13 @@ const app = express();
 const port = 3000;
 
 var aframeDir = 'a-frame';
-var threejsDir = 'threejs'
+
+var threejsDir = 'threejs';
+var threejsObjDir = path.join(threejsDir, 'threejs-obj');
+var threejsgltfDir = path.join(threejsDir, 'threejs-gltf');
+
 var webglDir = 'webgl';
+
 var babylonDir = 'babylonjs';
 var babylonObjDir = path.join(babylonDir, 'babylon-obj');
 var babylonglTFDir = path.join(babylonDir, 'babylon-glTF');
@@ -26,8 +31,14 @@ app.get('/webgl-obj.html', function (req, res) {
 
 app.get('/three-obj.html', function (req, res) {
     console.log('request for three-obj.html');
-    res.sendFile(path.join(__dirname, threejsDir, 'three-obj.html'));
-    console.log('redirect to' + path.join(__dirname, threejsDir, 'three-obj.html'));
+    res.sendFile(path.join(__dirname, threejsObjDir, 'three-obj.html'));
+    console.log('redirect to' + path.join(__dirname, threejsObjDir, 'three-obj.html'));
+});
+
+app.get('/three-gltf.html', function (req, res) {
+    console.log('request for three-gltf.html');
+    res.sendFile(path.join(__dirname, threejsgltfDir, 'three-gltf.html'));
+    console.log('redirect to' + path.join(__dirname, threejsgltfDir, 'three-gltf.html'));
 });
 
 app.get('/a-frame-obj.html', function (req, res) {
