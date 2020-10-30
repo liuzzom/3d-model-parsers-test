@@ -27,3 +27,9 @@
   - Aggiunto esempio glTF Three.JS
 - 29/10/2020-02:
   - Refactor Esempio glTF ThreeJS
+- 30/10/2020-01:
+  - Refactor Esempio glTF Babylon.js
+  - Lavoro su Relazione
+  - Refactor Esempio OBJ Babylon.js
+  - Inserimento cartella .idea in gitignore
+  - Migrazione To Do su Joplin

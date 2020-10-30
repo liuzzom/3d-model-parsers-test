@@ -3,8 +3,12 @@ var canvas = document.getElementById("renderCanvas");
 var engine = null;
 var scene = null;
 var sceneToRender = null;
-var createDefaultEngine = function () { return new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true }); };
-var delayCreateScene = function () {
+
+function createDefaultEngine(){
+  return new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true });
+}
+
+function delayCreateScene(){
   // Create a scene.
   var scene = new BABYLON.Scene(engine);
 
@@ -21,8 +25,8 @@ var delayCreateScene = function () {
   });
 
   return scene;
-};
-var engine;
+}
+
 try {
   engine = createDefaultEngine();
 } catch (e) {
@@ -30,8 +34,9 @@ try {
   engine = createDefaultEngine();
 }
 if (!engine) throw 'engine should not be null.';
-scene = delayCreateScene();;
-sceneToRender = scene
+
+scene = delayCreateScene();
+sceneToRender = scene;
 
 engine.runRenderLoop(function () {
   if (sceneToRender && sceneToRender.activeCamera) {
