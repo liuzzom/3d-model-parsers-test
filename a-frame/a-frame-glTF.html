@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>glTF Test</title>
+  <meta name="description" content="OBJ Test">
+  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>.
+</head>
+
+<body>
+  <a-scene>
+    <a-assets>
+      <a-asset-item id="object-ref" src="../public/BoomBox/BoomBox.gltf"></a-asset-item>
+    </a-assets>
+
+    <!-- Using the asset management system. -->
+    <a-gltf-model src="#object-ref" position="0 0.01 -0.05" modify-materials></a-gltf-model>
+
+    <a-camera position="0 0.01 0">
+      <a-cursor></a-cursor>
+    </a-camera>
+
+    <!-- Environment elements-->
+    <a-sky color="#000000"></a-sky>
+    <a-plane color="#1A1A1A" rotation="-90 0 0" width="500" height="500"></a-plane>
+  </a-scene>
+</body>
+
+</html>

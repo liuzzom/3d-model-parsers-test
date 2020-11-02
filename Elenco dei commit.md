@@ -33,3 +33,5 @@
   - Refactor Esempio OBJ Babylon.js
   - Inserimento cartella .idea in gitignore
   - Migrazione To Do su Joplin
+- 02/11/2020:
+  - Inserimento esempio glTF A-Frame

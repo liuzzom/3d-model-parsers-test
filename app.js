@@ -23,11 +23,15 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+// ---------- WebGL ----------
+
 app.get('/webgl-obj.html', function (req, res) {
     console.log('request for webgl-obj.html');
     res.sendFile(path.join(__dirname, webglDir, 'webgl-obj.html'));
     console.log('redirect to ' + path.join(__dirname, webglDir, 'webgl-obj.html'));
 });
+
+// ---------- Three.js ----------
 
 app.get('/three-obj.html', function (req, res) {
     console.log('request for three-obj.html');
@@ -41,11 +45,21 @@ app.get('/three-gltf.html', function (req, res) {
     console.log('redirect to' + path.join(__dirname, threejsgltfDir, 'three-gltf.html'));
 });
 
+// ---------- A-Frame ----------
+
 app.get('/a-frame-obj.html', function (req, res) {
     console.log('request for a-frame-obj.html');
     res.sendFile(path.join(__dirname, aframeDir, 'a-frame-obj.html'));
     console.log('redirect to ' + path.join(__dirname, aframeDir, 'a-frame-obj.html'));
 });
+
+app.get('/a-frame-glTF.html', function (req, res) {
+    console.log('request for a-frame-glTF.html');
+    res.sendFile(path.join(__dirname, aframeDir, 'a-frame-glTF.html'));
+    console.log('redirect to ' + path.join(__dirname, aframeDir, 'a-frame-glTF.html'));
+});
+
+// ---------- Babylon.js ----------
 
 app.get('/babylon-obj.html', function (req, res) {
     console.log('request for babylon-obj.html');
