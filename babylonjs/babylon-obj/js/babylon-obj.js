@@ -1,14 +1,8 @@
-var canvas = document.getElementById("renderCanvas");
-
-var engine = null;
-var scene = null;
-var sceneToRender = null;
-
-function createDefaultEngine(){
+function createDefaultEngine(canvas) {
   return new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true });
 }
 
-function delayCreateScene(){
+function delayCreateScene(engine) {
   // Create a scene.
   var scene = new BABYLON.Scene(engine);
 
@@ -27,24 +21,35 @@ function delayCreateScene(){
   return scene;
 }
 
-try {
-  engine = createDefaultEngine();
-} catch (e) {
-  console.log("the available createEngine function failed. Creating the default engine instead");
-  engine = createDefaultEngine();
-}
-if (!engine) throw 'engine should not be null.';
 
-scene = delayCreateScene();
-sceneToRender = scene;
+function main() {
+  var canvas = document.getElementById("renderCanvas");
 
-engine.runRenderLoop(function () {
-  if (sceneToRender && sceneToRender.activeCamera) {
-    sceneToRender.render();
+  var engine = null;
+  var scene = null;
+  var sceneToRender = null;
+
+  try {
+    engine = createDefaultEngine(canvas);
+  } catch (e) {
+    console.log("the available createEngine function failed. Creating the default engine instead");
+    engine = createDefaultEngine(canvas);
   }
-});
+  if (!engine) throw 'engine should not be null.';
 
-// Resize
-window.addEventListener("resize", function () {
-  engine.resize();
-});
+  scene = delayCreateScene(engine);
+  sceneToRender = scene;
+
+  engine.runRenderLoop(function () {
+    if (sceneToRender && sceneToRender.activeCamera) {
+      sceneToRender.render();
+    }
+  });
+
+  // Resize
+  window.addEventListener("resize", function () {
+    engine.resize();
+  });
+}
+
+main();

@@ -145,10 +145,30 @@ function renderModel(modelParams) {
   requestAnimationFrame(render);
 }
 
-renderModel({
-  selector: '#c',
-  objectPath: 'public/BoomBox/BoomBox.gltf',
-  background: 'black',
-  usePlane: true,
-  planeColor: '#1A1A1A'
-});
+function main(){
+  const canvas = document.querySelector('#c');
+  const modelPath = canvas.getAttribute("model-path");
+  let usePlane = canvas.getAttribute("use-plane");
+
+  if(!modelPath) {
+    console.error("No model-path value");
+    return;
+  }
+  
+  if(usePlane === "true"){
+    usePlane = true;
+  } else {
+    usePlane = false;
+  }
+
+  renderModel({
+    selector: '#c',
+    objectPath: modelPath,
+    background: 'black',
+    usePlane: usePlane,
+    planeColor: '#1A1A1A'
+  });
+}
+
+
+main();

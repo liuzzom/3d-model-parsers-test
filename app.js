@@ -45,6 +45,12 @@ app.get('/three-gltf.html', function (req, res) {
     console.log('redirect to' + path.join(__dirname, threejsgltfDir, 'three-gltf.html'));
 });
 
+app.get('/three-gltf-big.html', function (req, res) {
+    console.log('request for three-gltf-big.html');
+    res.sendFile(path.join(__dirname, threejsgltfDir, 'three-gltf-big.html'));
+    console.log('redirect to' + path.join(__dirname, threejsgltfDir, 'three-gltf-big.html'));
+});
+
 // ---------- A-Frame ----------
 
 app.get('/a-frame-obj.html', function (req, res) {
@@ -59,6 +65,12 @@ app.get('/a-frame-glTF.html', function (req, res) {
     console.log('redirect to ' + path.join(__dirname, aframeDir, 'a-frame-glTF.html'));
 });
 
+app.get('/a-frame-glTF-big.html', function (req, res) {
+    console.log('request for a-frame-glTF-big.html');
+    res.sendFile(path.join(__dirname, aframeDir, 'a-frame-glTF-big.html'));
+    console.log('redirect to ' + path.join(__dirname, aframeDir, 'a-frame-glTF-big.html'));
+});
+
 // ---------- Babylon.js ----------
 
 app.get('/babylon-obj.html', function (req, res) {
@@ -71,6 +83,12 @@ app.get('/babylon-glTF.html', function (req, res) {
     console.log('request for babylon-glTF.html');
     res.sendFile(path.join(__dirname, babylonglTFDir, 'babylon-glTF.html'));
     console.log('redirect to ' + path.join(__dirname, babylonglTFDir, 'babylon-glTF.html'));
+});
+
+app.get('/babylon-glTF-big.html', function (req, res) {
+    console.log('request for babylon-glTF-big.html');
+    res.sendFile(path.join(__dirname, babylonglTFDir, 'babylon-glTF-big.html'));
+    console.log('redirect to ' + path.join(__dirname, babylonglTFDir, 'babylon-glTF-big.html'));
 });
 
 app.use('/public', express.static(path.join(__dirname, 'public')));

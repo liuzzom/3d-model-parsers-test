@@ -1,23 +1,17 @@
-var canvas = document.getElementById("renderCanvas");
-
-var engine = null;
-var scene = null;
-var sceneToRender = null;
-
-function createDefaultEngine() {
+function createDefaultEngine(canvas) {
   return new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true });
 };
 
-function delayCreateScene(){
+function delayCreateScene(engine, modelFolder, modelFile) {
   // Create a scene.
   var scene = new BABYLON.Scene(engine);
 
   // Create a default skybox with an environment.
-  var hdrTexture = BABYLON.CubeTexture.CreateFromPrefilteredData("public/textures/environment.dds", scene);
-  var currentSkybox = scene.createDefaultSkybox(hdrTexture, true);
+  // var hdrTexture = BABYLON.CubeTexture.CreateFromPrefilteredData("public/textures/environment.dds", scene);
+  // var currentSkybox = scene.createDefaultSkybox(hdrTexture, true);
 
   // Append glTF model to scene.
-  BABYLON.SceneLoader.Append("public/BoomBox/", "BoomBox.gltf", scene, function (scene) {
+  BABYLON.SceneLoader.Append(modelFolder, modelFile, scene, function (scene) {
     // Create a default arc rotate camera and light.
     scene.createDefaultCameraOrLight(true, true, true);
     scene.clearColor = BABYLON.Color3.Black();
@@ -30,24 +24,42 @@ function delayCreateScene(){
   return scene;
 };
 
-try {
-  engine = createDefaultEngine();
-} catch (e) {
-  console.log("the available createEngine function failed. Creating the default engine instead");
-  engine = createDefaultEngine();
-}
-if (!engine) throw 'engine should not be null.';
 
-scene = delayCreateScene();;
-sceneToRender = scene
+function main() {
+  var canvas = document.getElementById("renderCanvas");
+  var modelPath = canvas.getAttribute("model-path");
 
-engine.runRenderLoop(function () {
-  if (sceneToRender && sceneToRender.activeCamera) {
-    sceneToRender.render();
+  var engine = null;
+  var scene = null;
+  var sceneToRender = null;
+  
+  try {
+    engine = createDefaultEngine(canvas);
+  } catch (e) {
+    console.log("the available createEngine function failed. Creating the default engine instead");
+    engine = createDefaultEngine(canvas);
   }
-});
+  if (!engine) throw 'engine should not be null.';
 
-// Resize
-window.addEventListener("resize", function () {
-  engine.resize();
-});
+  var pathElems = modelPath.split("/");
+  var modelFile = pathElems.pop();
+  var modelFolder = pathElems.join("/") + "/";
+  console.log(modelFile);
+  console.log(modelFolder);
+
+  scene = delayCreateScene(engine, modelFolder, modelFile);
+  sceneToRender = scene
+
+  engine.runRenderLoop(function () {
+    if (sceneToRender && sceneToRender.activeCamera) {
+      sceneToRender.render();
+    }
+  });
+
+  // Resize
+  window.addEventListener("resize", function () {
+    engine.resize();
+  });
+}
+
+main();

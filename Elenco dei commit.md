@@ -35,3 +35,10 @@
   - Migrazione To Do su Joplin
 - 02/11/2020:
   - Inserimento esempio glTF A-Frame
+- 10/11/2020:
+  - Utilizzo di path "assoluti"
+  - Inserimento esempio glTF con Modello Complesso:
+    - A-Frame
+    - Three.js
+    - Babylon.js
+    
