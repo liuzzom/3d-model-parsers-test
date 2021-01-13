@@ -5,17 +5,19 @@ const port = 3000;
 
 // -----------------------------------------------------------------------------------------------
 
-var aframeDir = 'a-frame';
+const aframeDir = 'a-frame';
 
-var threejsDir = 'threejs';
-var threejsObjDir = path.join(threejsDir, 'threejs-obj');
-var threejsgltfDir = path.join(threejsDir, 'threejs-gltf');
+const threejsDir = 'threejs';
+const threejsObjDir = path.join(threejsDir, 'threejs-obj');
+const threejsgltfDir = path.join(threejsDir, 'threejs-gltf');
 
-var webglDir = 'webgl';
+const webglDir = 'webgl';
 
-var babylonDir = 'babylonjs';
-var babylonObjDir = path.join(babylonDir, 'babylon-obj');
-var babylonglTFDir = path.join(babylonDir, 'babylon-glTF');
+const babylonDir = 'babylonjs';
+const babylonObjDir = path.join(babylonDir, 'babylon-obj');
+const babylonglTFDir = path.join(babylonDir, 'babylon-glTF');
+
+const leafletDir = 'leaflet';
 
 // -----------------------------------------------------------------------------------------------
 
@@ -93,6 +95,32 @@ app.get('/babylon-glTF-big.html', function (req, res) {
 	console.log('request for babylon-glTF-big.html');
 	res.sendFile(path.join(__dirname, babylonglTFDir, 'babylon-glTF-big.html'));
 	console.log('redirect to ' + path.join(__dirname, babylonglTFDir, 'babylon-glTF-big.html'));
+});
+
+// ---------- Leaflet ------------------------------------------------------------------------
+
+app.get('/simple_leaflet.html', function (req, res) {
+	console.log('request for simple_leaflet.html');
+	res.sendFile(path.join(__dirname, leafletDir, 'simple_leaflet.html'));
+	console.log('redirect to ' + path.join(__dirname, leafletDir, 'simple_leaflet.html'));
+});
+
+app.get('/fullscreen_with_geo.html', function (req, res) {
+	console.log('request for fullscreen_with_geo.html');
+	res.sendFile(path.join(__dirname, leafletDir, 'fullscreen_with_geo.html'));
+	console.log('redirect to ' + path.join(__dirname, leafletDir, 'fullscreen_with_geo.html'));
+});
+
+app.get('/layers_control.html', function (req, res) {
+	console.log('request for layers_control.html');
+	res.sendFile(path.join(__dirname, leafletDir, 'layers_control.html'));
+	console.log('redirect to ' + path.join(__dirname, leafletDir, 'layers_control.html'));
+});
+
+app.get('/non_geo_map.html', function (req, res) {
+	console.log('request for non_geo_map.html');
+	res.sendFile(path.join(__dirname, leafletDir, 'non_geo_map.html'));
+	console.log('redirect to ' + path.join(__dirname, leafletDir, 'non_geo_map.html'));
 });
 
 // -----------------------------------------------------------------------------------------------
