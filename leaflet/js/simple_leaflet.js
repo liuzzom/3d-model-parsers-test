@@ -16,7 +16,7 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 // ----Markers----
 // Pointer
 var marker = L.marker([51.5, -0.09]).addTo(mymap);
-// Cricle
+// Circle
 var circle = L.circle([51.508, -0.11], {
     color: 'red',
     fillColor: '#f03',

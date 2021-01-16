@@ -10,21 +10,19 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="/public/favicon.ico" />
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-        crossorigin="" />
-
+    <!-- Include Leaflet CSS file -->
+    <link rel="stylesheet" href="/leaflet/leaflet/leaflet.css" />
     <link rel="stylesheet" href="/leaflet/css/layers_control.css">
 
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-        crossorigin=""></script>
-
+    <!-- Include Leaflet JS file -->
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="/leaflet/leaflet/leaflet.js"></script>
 </head>
 
 <body>
-    <div id='map'></div>
+    <h1>Layer and Controls Example</h1>
 
+    <div id='map'></div>
     <script src="/leaflet/js/layers_control.js"></script>
 </body>
 
