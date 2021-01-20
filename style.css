@@ -1,4 +1,7 @@
-@import url("https://webglfundamentals.org/webgl/resources/webgl-tutorials.css");
+/* HTTP is used as a workaround to fix SSL Errors 
+ * Use HTTPS for production purpouses
+ */
+@import url("http://localhost:3000/webgl-tutorials.css");
 html, body {
     margin: 0;
     height: 100%;

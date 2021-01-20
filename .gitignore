@@ -9,5 +9,6 @@ test/*.log
 # WebStorm folder
 .idea/
 
-# snippet files
-snippet.*
+# snippet and test files
+*snippet*.*
+*test*.*

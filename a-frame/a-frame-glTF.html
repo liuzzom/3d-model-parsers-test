@@ -5,11 +5,12 @@
   <meta charset="utf-8">
   <title>glTF Test</title>
   <meta name="description" content="OBJ Test">
-  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>.
+  <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>.
 </head>
 
 <body>
   <a-scene>
+    <!-- Assets definition -->
     <a-assets>
       <a-asset-item id="object-ref" src="../public/BoomBox/BoomBox.gltf"></a-asset-item>
     </a-assets>
@@ -17,6 +18,7 @@
     <!-- Using the asset management system. -->
     <a-gltf-model src="#object-ref" position="0 0.01 -0.05"></a-gltf-model>
 
+    <!-- Camera and cursor -->
     <a-camera position="0 0.01 0">
       <a-cursor></a-cursor>
     </a-camera>

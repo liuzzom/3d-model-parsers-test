@@ -5,11 +5,12 @@
   <meta charset="utf-8">
   <title>OBJ Test</title>
   <meta name="description" content="OBJ Test">
-  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>.
+  <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>.
 </head>
 
 <body>
   <a-scene>
+    <!-- Assets definition -->
     <a-assets>
       <a-asset-item id="object-ref" src="/public/Windmill/windmill.obj"></a-asset-item>
       <a-asset-item id="material-ref" src="/public/Windmill/windmill-fixed.mtl"></a-asset-item>
@@ -18,6 +19,7 @@
     <!-- Using the asset management system. -->
     <a-obj-model src="#object-ref" mtl="#material-ref" position="0 0 -15" rotation="0 0 0"></a-obj-model>
 
+    <!-- Camera and cursor -->
     <a-camera>
       <a-cursor></a-cursor>
     </a-camera>

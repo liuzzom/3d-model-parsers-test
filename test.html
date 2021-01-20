@@ -1,25 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Test Page</title>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type="image/x-icon" href="/public/favicon.ico" />
+    <link rel="stylesheet" href="style.css">
+    <title>Test Page</title>
 
-    <!-- Include Leaflet CSS file -->
-    <link rel="stylesheet" href="/leaflet/leaflet/leaflet.css" />
+    <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
+    <script type="text/javascript">
+        AFRAME.registerComponent('marker', {
+            schema: {
+                default: ''
+            },
+            init() {
+                const sky = document.querySelector('a-sky');
+                var b = false;
+                console.log("b value: " + b);
+                this.el.addEventListener('click', () => {
+                    console.log("b value: " + b);
+                    console.log(sky.getAttribute('src'));
+                    if (b) {
+                        sky.setAttribute('src', "#entrance");
+                    } else {
+                        sky.setAttribute('src', "#study");
+                    }
+                    b = !b;
+                    console.log('clicked');
+                });
+            }
+        });
 
-    <link rel="stylesheet" href="/leaflet/css/style.css">
-
-    <!-- Include Leaflet JS file -->
-    <!-- Make sure you put this AFTER Leaflet's CSS -->
-    <script src="/leaflet/leaflet/leaflet.js"></script>
+    </script>
 </head>
 
 <body>
-    <div id='map'></div>
-    <script src="test.js"></script>
+    <a-scene cursor="rayOrigin:mouse">
+        <a-sky src="#entrance" rotation="0 -90 0" position="0 0 0" id="src-img-tpl"></a-sky>
+        <a-sphere href="http://google.com" id="marker" position="-10 3 -15" radius="0.65" color="#EF2D5E" marker></a-sphere>
+        <a-assets>
+            <img id="entrance" src="public/colors/green.jpg.jpg">
+            <img id="study" src="public/colors/blue.jpg">
+            <img id="parking" src="public/colors/crimson.jpg">
+        </a-assets>
+    </a-scene>
 </body>
 
 </html>
