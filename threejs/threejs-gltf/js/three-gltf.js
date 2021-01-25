@@ -130,6 +130,13 @@ function renderModel(modelParams) {
     return needResize;
   }
 
+  var domEvents = new THREEx.DomEvents(camera, renderer.domElement);
+  domEvents.addEventListener(scene, 'click', function (event) {
+    let point = event.intersect.point;
+    let pointString = point.x.toFixed(3) + ", " + point.y.toFixed(3) + ", " + point.z.toFixed(3);
+    console.log("Click at: " + pointString);
+  });
+
   function render() {
     if (resizeRendererToDisplaySize(renderer)) {
       const canvas = renderer.domElement;

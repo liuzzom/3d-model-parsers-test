@@ -2,32 +2,49 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <title>OBJ Test</title>
-  <meta name="description" content="OBJ Test">
-  <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>.
+    <meta charset="utf-8">
+    <link rel="shortcut icon" type="image/x-icon" href="/public/favicon.ico"/>
+
+    <title>OBJ Test</title>
+    <meta name="description" content="OBJ Test">
+
+    <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
+    <script>
+        AFRAME.registerComponent("click-handler", {
+            init: function () {
+                // listen for clicks
+                this.el.addEventListener("click", event => {
+                    let point = event.detail.intersection.point
+                    let pointString = point.x.toFixed(2) + ", " + point.y.toFixed(2) + ", " + point.z.toFixed(2);
+                    console.log("Click at: " + pointString);
+                })
+            }
+        })
+    </script>
 </head>
 
 <body>
-  <a-scene>
-    <!-- Assets definition -->
-    <a-assets>
-      <a-asset-item id="object-ref" src="/public/Windmill/windmill.obj"></a-asset-item>
-      <a-asset-item id="material-ref" src="/public/Windmill/windmill-fixed.mtl"></a-asset-item>
-    </a-assets>
+    <a-scene cursor="rayOrigin: mouse" raycaster="objects: .clickable">
+        <!-- Assets definition -->
+        <a-assets>
+            <a-asset-item id="object-ref" src="/public/Windmill/windmill.obj"></a-asset-item>
+            <a-asset-item id="material-ref" src="/public/Windmill/windmill-fixed.mtl"></a-asset-item>
+        </a-assets>
 
-    <!-- Using the asset management system. -->
-    <a-obj-model src="#object-ref" mtl="#material-ref" position="0 0 -15" rotation="0 0 0"></a-obj-model>
+        <!-- Using the asset management system. -->
+        <a-obj-model src="#object-ref" mtl="#material-ref" position="0 0 -15" rotation="0 0 0"></a-obj-model>
 
-    <!-- Camera and cursor -->
-    <a-camera>
-      <a-cursor></a-cursor>
-    </a-camera>
+        <!-- Camera and cursor -->
+        <!-- Create a collision mesh around the camera, use it to determine the clicked points. -->
+        <a-camera>
+            <a-cursor></a-cursor>
+            <a-sphere class="clickable" material="side: back" visible="false" click-handler></a-sphere>
+        </a-camera>
 
-    <!-- Environment elements-->
-    <a-sky color="#000000"></a-sky>
-    <a-plane color="#1A1A1A" rotation="-90 0 0" width="500" height="500"></a-plane>
-  </a-scene>
+        <!-- Environment elements-->
+        <a-sky color="#000000"></a-sky>
+        <a-plane color="#1A1A1A" rotation="-90 0 0" width="500" height="500"></a-plane>
+    </a-scene>
 </body>
 
 </html>

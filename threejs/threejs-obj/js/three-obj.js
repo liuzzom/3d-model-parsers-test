@@ -50,7 +50,7 @@ function renderModelWithMaterial(objectPath, materialPath, usePlane, planeColor,
   mtlLoader.load(materialPath, (mtlParseResult) => {
     const objLoader = new OBJLoader2();
     const materials = MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
-    
+
     // Set the material called "Material" as double-sided
     // Efficient but strongly coupled with the actual mtl file
     // if (materials.Material) {
@@ -183,9 +183,11 @@ function renderModel(modelParams) {
     return needResize;
   }
 
-  var domEvents	= new THREEx.DomEvents(camera, renderer.domElement);
-  domEvents.addEventListener(scene, 'click', function(event){
-    console.log(event.intersect.point);
+  var domEvents = new THREEx.DomEvents(camera, renderer.domElement);
+  domEvents.addEventListener(scene, 'click', function (event) {
+    let point = event.intersect.point;
+    let pointString = point.x.toFixed(3) + ", " + point.y.toFixed(3) + ", " + point.z.toFixed(3);
+    console.log("Click at: " + pointString);
   });
 
   function render() {
