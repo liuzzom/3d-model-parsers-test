@@ -1,49 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Test Page</title>
-
-    <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
-    <script type="text/javascript">
-        AFRAME.registerComponent('marker', {
-            schema: {
-                default: ''
-            },
-            init() {
-                const sky = document.querySelector('a-sky');
-                var b = false;
-                console.log("b value: " + b);
-                this.el.addEventListener('click', () => {
-                    console.log("b value: " + b);
-                    console.log(sky.getAttribute('src'));
-                    if (b) {
-                        sky.setAttribute('src', "#entrance");
-                    } else {
-                        sky.setAttribute('src', "#study");
-                    }
-                    b = !b;
-                    console.log('clicked');
-                });
-            }
-        });
-
-    </script>
 </head>
-
 <body>
-    <a-scene cursor="rayOrigin:mouse">
-        <a-sky src="#entrance" rotation="0 -90 0" position="0 0 0" id="src-img-tpl"></a-sky>
-        <a-sphere href="http://google.com" id="marker" position="-10 3 -15" radius="0.65" color="#EF2D5E" marker></a-sphere>
-        <a-assets>
-            <img id="entrance" src="public/colors/green.jpg.jpg">
-            <img id="study" src="public/colors/blue.jpg">
-            <img id="parking" src="public/colors/crimson.jpg">
-        </a-assets>
-    </a-scene>
-</body>
+    <h1>Test Page</h1>
 
+    <script src="test.js"></script>
+</body>
 </html>

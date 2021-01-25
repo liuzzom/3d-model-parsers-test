@@ -1,8 +1,8 @@
-import * as THREE from 'https://threejsfundamentals.org/threejs/resources/threejs/r119/build/three.module.js';
-import { OrbitControls } from 'https://threejsfundamentals.org/threejs/resources/threejs/r119/examples/jsm/controls/OrbitControls.js';
-import { OBJLoader2 } from 'https://threejsfundamentals.org/threejs/resources/threejs/r119/examples/jsm/loaders/OBJLoader2.js';
-import { MTLLoader } from 'https://threejsfundamentals.org/threejs/resources/threejs/r119/examples/jsm/loaders/MTLLoader.js';
-import { MtlObjBridge } from 'https://threejsfundamentals.org/threejs/resources/threejs/r119/examples/jsm/loaders/obj2/bridge/MtlObjBridge.js';
+import * as THREE from '../../modules/common/three.module.js';
+import { OrbitControls } from '../../modules/common/OrbitControls.js';
+import { OBJLoader2 } from '../../modules/webgl/OBJLoader2.js';
+import { MTLLoader } from '../../modules/webgl/MTLLoader.js';
+import { MtlObjBridge } from '../../modules/webgl/MtlObjBridge.js';
 
 function frameArea(sizeToFitOnScreen, boxSize, boxCenter, camera) {
   const halfSizeToFitOnScreen = sizeToFitOnScreen * 0.5;
@@ -34,18 +34,8 @@ function addPlane(boxSize, scene, planeColor) {
   // Plane
   const planeSize = boxSize * 2;
 
-  // Texture Example
-  // const loader = new THREE.TextureLoader();
-  // const texture = loader.load('https://threejsfundamentals.org/threejs/resources/images/checker.png');
-  // texture.wrapS = THREE.RepeatWrapping;
-  // texture.wrapT = THREE.RepeatWrapping;
-  // texture.magFilter = THREE.NearestFilter;
-  // const repeats = 20;
-  // texture.repeat.set(repeats, repeats);
-
   const planeGeo = new THREE.PlaneBufferGeometry(planeSize, planeSize);
   const planeMat = new THREE.MeshPhongMaterial({
-    //   map: texture, // If you want to use textured plane
     color: planeColor, // Used for a monochromatic plane
     side: THREE.DoubleSide,
   });
@@ -192,6 +182,11 @@ function renderModel(modelParams) {
     }
     return needResize;
   }
+
+  var domEvents	= new THREEx.DomEvents(camera, renderer.domElement);
+  domEvents.addEventListener(scene, 'click', function(event){
+    console.log(event.intersect.point);
+  });
 
   function render() {
 

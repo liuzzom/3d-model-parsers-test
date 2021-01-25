@@ -19,6 +19,8 @@ const babylonglTFDir = path.join(babylonDir, 'babylon-glTF');
 
 const leafletDir = 'leaflet';
 
+const modelViewerDir = 'model-viewer';
+
 // -----------------------------------------------------------------------------------------------
 
 app.listen(port, () => {
@@ -122,6 +124,15 @@ app.get('/non_geo_map.html', function (req, res) {
 	console.log('request for non_geo_map.html');
 	res.sendFile(path.join(__dirname, leafletDir, 'non_geo_map.html'));
 	console.log('redirect to ' + path.join(__dirname, leafletDir, 'non_geo_map.html'));
+});
+
+
+// ---------- model-viewer -----------------------------------------------------------------------
+
+app.get('/astronaut.html', function (req, res) {
+	console.log('request for astronaut.html');
+	res.sendFile(path.join(__dirname, modelViewerDir, 'astronaut.html'));
+	console.log('redirect to ' + path.join(__dirname, 'model-viewer', 'astronaut.html'));
 });
 
 // -----------------------------------------------------------------------------------------------
