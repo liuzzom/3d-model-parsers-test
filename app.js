@@ -40,6 +40,12 @@ app.get('/webgl-obj.html', function (req, res) {
 	console.log('redirect to ' + path.join(__dirname, webglDir, 'webgl-obj.html'));
 });
 
+app.get('/webgl-leaflet-obj.html', function (req, res) {
+	console.log('request for webgl-leaflet-obj.html');
+	res.sendFile(path.join(__dirname, webglDir, 'webgl-leaflet-obj.html'));
+	console.log('redirect to ' + path.join(__dirname, webglDir, 'webgl-leaflet-obj.html'));
+});
+
 // ---------- Three.js --------------------------------------------------------------------------
 
 app.get('/three-obj.html', function (req, res) {

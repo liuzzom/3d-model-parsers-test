@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Leaflet+WebGL Test</title>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" type="image/x-icon" href="/public/favicon.ico"/>
+
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        #map {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            background-color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <h1>WebGL + Leaflet Test</h1>
+        <div id="map"></div>
+    </div>
+
+    <link rel="stylesheet" href="leaflet/leaflet/leaflet.css" />
+    <script src="leaflet/leaflet/leaflet.js"></script>
+
+    <script src="webgl/js/L.CanvasLayer.js"></script>
+    <script src="webgl/js/webgl-leaflet-obj.js"></script>
+    <script src="webgl/js/webgl-utils.js"></script>
+    <script src="webgl/js/m4.js"></script>
+</body>
+
+</html>
