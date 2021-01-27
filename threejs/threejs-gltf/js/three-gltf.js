@@ -67,8 +67,8 @@ function loadModel(objectPath, usePlane, planeColor, scene, camera, controls) {
     controls.target.copy(boxCenter);
     controls.update();
 
-    if(usePlane){
-      if(planeColor){
+    if (usePlane) {
+      if (planeColor) {
         addPlane(boxSize, scene, planeColor);
       } else {
         addPlane(boxSize, scene, '#1A1A1A');
@@ -135,6 +135,17 @@ function renderModel(modelParams) {
     let point = event.intersect.point;
     let pointString = point.x.toFixed(3) + ", " + point.y.toFixed(3) + ", " + point.z.toFixed(3);
     console.log("Click at: " + pointString);
+
+    const geometry = new THREE.CircleGeometry(0.25, 32); // TO FIX: hard-coded value
+    const material = new THREE.MeshBasicMaterial({ color: 0xcc0000 });
+    const circle = new THREE.Mesh(geometry, material);
+    circle.position.x = point.x.toFixed(3);
+    circle.position.y = point.y.toFixed(3);
+    circle.position.z = point.z.toFixed(3);
+
+    scene.add(circle);
+
+    console.log(circle.position);
   });
 
   function render() {
@@ -152,17 +163,17 @@ function renderModel(modelParams) {
   requestAnimationFrame(render);
 }
 
-function main(){
+function main() {
   const canvas = document.querySelector('#c');
   const modelPath = canvas.getAttribute("model-path");
   let usePlane = canvas.getAttribute("use-plane");
 
-  if(!modelPath) {
+  if (!modelPath) {
     console.error("No model-path value");
     return;
   }
-  
-  if(usePlane === "true"){
+
+  if (usePlane === "true") {
     usePlane = true;
   } else {
     usePlane = false;

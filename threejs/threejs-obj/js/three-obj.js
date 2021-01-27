@@ -183,12 +183,25 @@ function renderModel(modelParams) {
     return needResize;
   }
 
+  // Add click event handler
   var domEvents = new THREEx.DomEvents(camera, renderer.domElement);
   domEvents.addEventListener(scene, 'click', function (event) {
     let point = event.intersect.point;
     let pointString = point.x.toFixed(3) + ", " + point.y.toFixed(3) + ", " + point.z.toFixed(3);
     console.log("Click at: " + pointString);
+
+    const geometry = new THREE.CircleGeometry(0.25, 32); // TO FIX: hard-coded value
+    const material = new THREE.MeshBasicMaterial({ color: 0xcc0000 });
+    const circle = new THREE.Mesh(geometry, material);
+    circle.position.x = point.x.toFixed(3);
+    circle.position.y = point.y.toFixed(3);
+    circle.position.z = point.z.toFixed(3);
+
+    scene.add(circle);
+
+    console.log(circle.position);
   });
+
 
   function render() {
 
