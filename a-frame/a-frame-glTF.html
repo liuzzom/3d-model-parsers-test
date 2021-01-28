@@ -9,18 +9,7 @@
     <meta name="description" content="OBJ Test">
 
     <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
-    <script>
-        AFRAME.registerComponent("click-handler", {
-            init: function () {
-                // listen for clicks
-                this.el.addEventListener("click", event => {
-                    let point = event.detail.intersection.point
-                    let pointString = point.x.toFixed(2) + ", " + point.y.toFixed(2) + ", " + point.z.toFixed(2);
-                    console.log("Click at: " + pointString);
-                })
-            }
-        })
-    </script>
+    <script src="/a-frame/js/a-frame-event_handler.js"></script>
 </head>
 
 <body>
@@ -42,7 +31,7 @@
 
         <!-- Environment elements-->
         <a-sky color="#000000"></a-sky>
-        <a-plane color="#1A1A1A" rotation="-90 0 0" width="500" height="500"></a-plane>
+        <a-plane color="#1A1A1A" rotation="-90 0 0" width="50" height="50"></a-plane>
     </a-scene>
 </body>
 
