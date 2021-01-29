@@ -7,9 +7,8 @@ AFRAME.registerComponent("click-handler", {
             let pointString = point.x.toFixed(3) + " " + point.y.toFixed(3) + " " + point.z.toFixed(3);
             console.log("Click at: " + pointString);
 
-            let trigger = false;
+            let trigger = true
             if(trigger) {
-
                 let scene = document.getElementById("scene");
                 var marker = document.createElement("a-circle");
                 scene.appendChild(marker)

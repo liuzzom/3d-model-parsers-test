@@ -634,8 +634,8 @@ async function main(gl) {
  * The resize is caused also by zoom, dragging and double click
  * A not-navigation provider does not need them
  */
-var leafletMap = L.map('map', { zoomControl: false}).setView([50.00, 14.44], 9);
-leafletMap.dragging.disable(); 
+var leafletMap = L.map('map', { zoomControl: false }).setView([50.00, 14.44], 9);
+leafletMap.dragging.disable();
 
 L.canvasLayer()
     .delegate(this) // -- if we do not inherit from L.CanvasLayer we can setup a delegate to receive events from L.CanvasLayer
@@ -646,6 +646,9 @@ function onDrawLayer(info) {
     var gl = info.canvas.getContext('webgl');
     main(gl);
 }
+
+// Click Handler
+var mouseDownTime = undefined;
 
 function onMapClick(e) {
     console.log("You clicked the map at " + e.latlng.toString());
@@ -660,7 +663,23 @@ function onMapClick(e) {
     }
 }
 
-leafletMap.on('click', onMapClick);
+leafletMap.on('mousedown', function () {
+    mouseDownTime = new Date().getTime();
+});
+
+leafletMap.on('mouseup', function (event) {
+    var mouseUpTime = new Date().getTime();
+    // compute the difference between press and release
+    var timeDiff = mouseUpTime - mouseDownTime;
+    console.log(timeDiff);
+
+    // if press and release occur within 150 ms
+    //  we consider the event as a click
+    if (timeDiff <= 150) {
+        console.log("click detected");
+        onMapClick(event)
+    }
+});
 
 // This is needed if the images are not on the same domain
 // See: https://webglfundamentals.org/webgl/lessons/webgl-cors-permission.html
