@@ -4,6 +4,9 @@ import { OBJLoader2 } from '../../modules/webgl/OBJLoader2.js';
 import { MTLLoader } from '../../modules/webgl/MTLLoader.js';
 import { MtlObjBridge } from '../../modules/webgl/MtlObjBridge.js';
 
+// will be use to set the pointer radius
+var minBoxSize = undefined;
+
 function frameArea(sizeToFitOnScreen, boxSize, boxCenter, camera) {
     const halfSizeToFitOnScreen = sizeToFitOnScreen * 0.5;
     const halfFovY = THREE.MathUtils.degToRad(camera.fov * .5);
@@ -72,6 +75,11 @@ function renderModelWithMaterial(objectPath, materialPath, usePlane, planeColor,
             const box = new THREE.Box3().setFromObject(root);
 
             const boxSize = box.getSize(new THREE.Vector3()).length();
+            const boxSizes = box.getSize(new THREE.Vector3());
+            minBoxSize = Math.min(boxSizes.x, boxSizes.y, boxSizes.z);
+            console.log(boxSizes);
+            console.log(minBoxSize);
+
             const boxCenter = box.getCenter(new THREE.Vector3());
 
             // set the camera to frame the box
@@ -194,7 +202,7 @@ function renderModel(modelParams) {
 
         let trigger = true;
         if (trigger) {
-            const geometry = new THREE.CircleGeometry(0.25, 32); // TO FIX: hard-coded value
+            const geometry = new THREE.CircleGeometry(minBoxSize/25, 32); // TO FIX: hard-coded percentage value
             const material = new THREE.MeshBasicMaterial({ color: 0xcc0000 });
             const circle = new THREE.Mesh(geometry, material);
             circle.position.x = point.x.toFixed(3);
@@ -213,7 +221,6 @@ function renderModel(modelParams) {
         var mouseUpTime = new Date().getTime();
         // compute the difference between press and release
         var timeDiff = mouseUpTime - mouseDownTime;
-        console.log("time diff: " + timeDiff);
 
         // if press and release occur within 150 ms
         //  we consider the event as a click
