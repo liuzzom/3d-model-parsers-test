@@ -7,15 +7,23 @@ AFRAME.registerComponent("click-handler", {
             let pointString = point.x.toFixed(3) + " " + point.y.toFixed(3) + " " + point.z.toFixed(3);
             console.log("Click at: " + pointString);
 
-            let trigger = true
+            // compute the box that contains the model
+            const box = new THREE.Box3().setFromObject(document.getElementById("model").object3D);
+            const boxSizes = box.getSize(new THREE.Vector3());
+            // compute the min size of the box (x, y, z)
+            // it will be used to set pointer radius
+            let minBoxSize = Math.min(boxSizes.x, boxSizes.y, boxSizes.z);
+            let radius = minBoxSize/25;
+
+            let trigger = true;
             if(trigger) {
                 let scene = document.getElementById("scene");
-                var marker = document.createElement("a-circle");
+                var marker = document.createElement("a-sphere");
                 scene.appendChild(marker)
                 
-                marker.setAttribute("class", "marker");
-                marker.setAttribute("radius", "0.25");
-                marker.setAttribute("color", "#EF2D5E");
+                marker.setAttribute("class", "pointer");
+                marker.setAttribute("radius", radius);
+                marker.setAttribute("color", "#CC0000");
                 marker.setAttribute("position", pointString);
             }
         }

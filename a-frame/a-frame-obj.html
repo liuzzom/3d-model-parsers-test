@@ -21,13 +21,10 @@
         </a-assets>
 
         <!-- Using the asset management system. -->
-        <a-obj-model id="model" src="#object-ref" mtl="#material-ref" position="0 0 -15" rotation="0 0 0"></a-obj-model>
+        <a-obj-model id="model" class="clickable" src="#object-ref" mtl="#material-ref" position="0 0 -15" rotation="0 0 0" click-handler></a-obj-model>
 
-        <!-- Camera and cursor -->
-        <!-- Create a collision mesh around the camera, use it to determine the clicked points. -->
+        <!-- Camera -->
         <a-camera>
-            <a-cursor></a-cursor>
-            <a-sphere class="clickable" material="side: back" visible="false" click-handler></a-sphere>
         </a-camera>
 
         <!-- Environment elements-->

@@ -149,7 +149,7 @@ function renderModel(modelParams) {
 
 		let trigger = true;
 		if (trigger) {
-			const geometry = new THREE.CircleGeometry(minBoxSize/25, 32); // TO FIX: hard-coded percentage value
+			const geometry = new THREE.SphereGeometry(minBoxSize/25, 32, 32); // FIX: hard-coded division value
 			const material = new THREE.MeshBasicMaterial({ color: 0xcc0000 });
 			const circle = new THREE.Mesh(geometry, material);
 			circle.position.x = point.x.toFixed(3);

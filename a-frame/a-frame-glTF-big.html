@@ -13,20 +13,17 @@
 </head>
 
 <body>
-    <a-scene cursor="rayOrigin: mouse" raycaster="objects: .clickable">
+    <a-scene id="scene" cursor="rayOrigin: mouse" raycaster="objects: .clickable">
         <!-- Assets definition -->
         <a-assets>
             <a-asset-item id="object-ref" src="/public/Scene/scene.gltf"></a-asset-item>
         </a-assets>
 
         <!-- Using the asset management system. -->
-        <a-gltf-model src="#object-ref" position="0 25 0"></a-gltf-model>
+        <a-gltf-model id="model" class="clickable" src="#object-ref" position="0 25 0" click-handler></a-gltf-model>
 
-        <!-- Camera and cursor -->
-        <!-- Create a collision mesh around the camera, use it to determine the clicked points. -->
+        <!-- Camera -->
         <a-camera position="0 25 15">
-            <a-cursor></a-cursor>
-            <a-sphere class="clickable" material="side: back" visible="false" click-handler></a-sphere>
         </a-camera>
 
         <!-- Environment elements-->
