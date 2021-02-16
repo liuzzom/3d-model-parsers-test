@@ -36,7 +36,7 @@ function main() {
     try {
         engine = createDefaultEngine(canvas);
     } catch (e) {
-        console.log("the available createEngine function failed. Creating the default engine instead");
+        console.warn("the available createEngine function failed. Creating the default engine instead");
         engine = createDefaultEngine(canvas);
     }
     if (!engine) throw 'engine should not be null.';
@@ -44,8 +44,8 @@ function main() {
     var pathElems = modelPath.split("/");
     var modelFile = pathElems.pop();
     var modelFolder = pathElems.join("/") + "/";
-    console.log(modelFile);
-    console.log(modelFolder);
+    // console.log(modelFile);
+    // console.log(modelFolder);
 
     scene = delayCreateScene(engine, modelFolder, modelFile);
     sceneToRender = scene

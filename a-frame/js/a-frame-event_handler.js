@@ -5,7 +5,7 @@ AFRAME.registerComponent("click-handler", {
         function clickHandler(event) {
             let point = event.detail.intersection.point
             let pointString = point.x.toFixed(3) + " " + point.y.toFixed(3) + " " + point.z.toFixed(3);
-            console.log("Click at: " + pointString);
+            // console.log("Click at: " + pointString);
 
             // compute the box that contains the model
             const box = new THREE.Box3().setFromObject(document.getElementById("model").object3D);
@@ -40,7 +40,7 @@ AFRAME.registerComponent("click-handler", {
             // if press and release occur within 150 ms
             //  we consider the event as a click
             if(timeDiff <= 150){
-                console.log("click");
+                // console.log("click detected");
                 clickHandler(event);
             }
         })

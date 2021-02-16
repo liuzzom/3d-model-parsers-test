@@ -62,8 +62,8 @@ function loadModel(objectPath, usePlane, planeColor, scene, camera, controls) {
 		const boxSize = box.getSize(new THREE.Vector3()).length();
 		const boxSizes = box.getSize(new THREE.Vector3());
 		minBoxSize = Math.min(boxSizes.x, boxSizes.y, boxSizes.z);
-		console.log(boxSizes);
-		console.log(minBoxSize);
+		// console.log(boxSizes);
+		// console.log(minBoxSize);
 
 		const boxCenter = box.getCenter(new THREE.Vector3());
 
@@ -145,7 +145,7 @@ function renderModel(modelParams) {
 	function clickHandler(event) {
 		let point = event.intersect.point;
 		let pointString = point.x.toFixed(3) + ", " + point.y.toFixed(3) + ", " + point.z.toFixed(3);
-		console.log("Click at: " + pointString);
+		// console.log("Click at: " + pointString);
 
 		let trigger = true;
 		if (trigger) {
@@ -172,7 +172,7 @@ function renderModel(modelParams) {
 		// if press and release occur within 150 ms
 		//  we consider the event as a click
 		if (timeDiff <= 150) {
-			console.log("click");
+			// console.log("click");
 			clickHandler(event);
 		}
 	});
