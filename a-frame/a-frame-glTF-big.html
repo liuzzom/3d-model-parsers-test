@@ -20,10 +20,10 @@
         </a-assets>
 
         <!-- Using the asset management system. -->
-        <a-gltf-model id="model" class="clickable" src="#object-ref" position="0 25 0" click-handler></a-gltf-model>
+        <a-gltf-model id="model" class="clickable" src="#object-ref" click-handler position-setter></a-gltf-model>
 
         <!-- Camera -->
-        <a-camera position="0 25 15" wasd-controls="fly:true">
+        <a-camera id="camera" position="0 0 0" wasd-controls="fly:true">
         </a-camera>
 
         <!-- Environment elements-->

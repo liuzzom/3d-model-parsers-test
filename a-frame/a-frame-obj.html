@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <link rel="shortcut icon" type="image/x-icon" href="/public/favicon.ico"/>
+    <link rel="shortcut icon" type="image/x-icon" href="/public/favicon.ico" />
 
     <title>OBJ Test</title>
     <meta name="description" content="OBJ Test">
@@ -21,15 +21,16 @@
         </a-assets>
 
         <!-- Using the asset management system. -->
-        <a-obj-model id="model" class="clickable" src="#object-ref" mtl="#material-ref" position="0 0 -15" rotation="0 0 0" click-handler></a-obj-model>
+        <a-obj-model id="model" class="clickable" src="#object-ref" mtl="#material-ref" rotation="0 0 0" click-handler
+        position-setter>
+        </a-obj-model>
 
         <!-- Camera -->
-        <a-camera wasd-controls="fly:true">
+        <a-camera wasd-controls="fly:true" position="0 0 0 ">
         </a-camera>
 
         <!-- Environment elements-->
-        <a-sky color="#000000"></a-sky>
-        <a-plane color="#1A1A1A" rotation="-90 0 0" width="500" height="500"></a-plane>
+        <a-sky id="sky" color="#000000"></a-sky>
     </a-scene>
 </body>
 

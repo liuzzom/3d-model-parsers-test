@@ -34,3 +34,19 @@ Test per la comparazione di parser Javascript di file OBJ. Sono stati creati tra
       https://webglfundamentals.org/webgl/lessons/webgl-load-obj-w-mtl.html
 - Three.js Loading a .OBJ File
       https://threejsfundamentals.org/threejs/lessons/threejs-load-obj.html
+
+## TO DO
+
+- Iniziare la Presentazione
+  - Progettazione
+    - Analisi Requisiti
+    - Progettazione Front-End
+    - Progettazione Back-End
+  - Implementazione
+- Progettazione Front-End
+  - Classi "Manager"
+    - Model Manager
+    - Pointer Manager
+- Vedere GSON
+- Tutorial Angular
+- Vedere come pubblicare un componente (???) tramite npm

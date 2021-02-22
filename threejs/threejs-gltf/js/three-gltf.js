@@ -48,7 +48,7 @@ function addPlane(boxSize, scene, planeColor) {
 	scene.add(mesh);
 }
 
-function loadModel(objectPath, usePlane, planeColor, scene, camera, controls) {
+function loadModel(objectPath, scene, camera, controls) {
 	const gltfLoader = new GLTFLoader();
 
 	gltfLoader.load(objectPath, (gltf) => {
@@ -62,8 +62,6 @@ function loadModel(objectPath, usePlane, planeColor, scene, camera, controls) {
 		const boxSize = box.getSize(new THREE.Vector3()).length();
 		const boxSizes = box.getSize(new THREE.Vector3());
 		minBoxSize = Math.min(boxSizes.x, boxSizes.y, boxSizes.z);
-		// console.log(boxSizes);
-		// console.log(minBoxSize);
 
 		const boxCenter = box.getCenter(new THREE.Vector3());
 
@@ -74,14 +72,6 @@ function loadModel(objectPath, usePlane, planeColor, scene, camera, controls) {
 		controls.maxDistance = boxSize * 10;
 		controls.target.copy(boxCenter);
 		controls.update();
-
-		if (usePlane) {
-			if (planeColor) {
-				addPlane(boxSize, scene, planeColor);
-			} else {
-				addPlane(boxSize, scene, '#1A1A1A');
-			}
-		}
 	});
 }
 
@@ -125,7 +115,7 @@ function renderModel(modelParams) {
 		scene.add(light.target);
 	}
 
-	loadModel(modelParams.objectPath, modelParams.usePlane, modelParams.planeColor, scene, camera, controls);
+	loadModel(modelParams.objectPath, scene, camera, controls);
 
 	function resizeRendererToDisplaySize(renderer) {
 		const canvas = renderer.domElement;
@@ -144,8 +134,6 @@ function renderModel(modelParams) {
 
 	function clickHandler(event) {
 		let point = event.intersect.point;
-		let pointString = point.x.toFixed(3) + ", " + point.y.toFixed(3) + ", " + point.z.toFixed(3);
-		// console.log("Click at: " + pointString);
 
 		let trigger = true;
 		if (trigger) {
@@ -172,7 +160,6 @@ function renderModel(modelParams) {
 		// if press and release occur within 150 ms
 		//  we consider the event as a click
 		if (timeDiff <= 150) {
-			// console.log("click");
 			clickHandler(event);
 		}
 	});
@@ -195,25 +182,16 @@ function renderModel(modelParams) {
 function main() {
 	const canvas = document.querySelector('#c');
 	const modelPath = canvas.getAttribute("model-path");
-	let usePlane = canvas.getAttribute("use-plane");
 
 	if (!modelPath) {
 		console.error("No model-path value");
 		return;
 	}
 
-	if (usePlane === "true") {
-		usePlane = true;
-	} else {
-		usePlane = false;
-	}
-
 	renderModel({
 		selector: '#c',
 		objectPath: modelPath,
 		background: 'black',
-		usePlane: usePlane,
-		planeColor: '#1A1A1A'
 	});
 }
 

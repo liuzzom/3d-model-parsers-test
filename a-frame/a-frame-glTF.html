@@ -20,15 +20,14 @@
         </a-assets>
 
         <!-- Using the asset management system. -->
-        <a-gltf-model id="model" class="clickable" src="#object-ref" position="0 0.01 -0.05" click-handler></a-gltf-model>
+        <a-gltf-model id="model" class="clickable" src="#object-ref" click-handler position-setter></a-gltf-model>
 
         <!-- Camera -->
-        <a-camera position="0 0.01 0">
+        <a-camera id="camera" position="0 0 0">
         </a-camera>
 
         <!-- Environment elements-->
-        <a-sky color="#000000"></a-sky>
-        <a-plane color="#1A1A1A" rotation="-90 0 0" width="50" height="50"></a-plane>
+        <a-sky id="sky" color="#000000"></a-sky>
     </a-scene>
 </body>
 

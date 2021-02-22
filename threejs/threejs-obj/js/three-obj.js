@@ -33,22 +33,7 @@ function frameArea(sizeToFitOnScreen, boxSize, boxCenter, camera) {
     camera.lookAt(boxCenter.x, boxCenter.y, boxCenter.z);
 }
 
-function addPlane(boxSize, scene, planeColor) {
-    // Plane
-    const planeSize = boxSize * 2;
-
-    const planeGeo = new THREE.PlaneBufferGeometry(planeSize, planeSize);
-    const planeMat = new THREE.MeshPhongMaterial({
-        color: planeColor, // Used for a monochromatic plane
-        side: THREE.DoubleSide,
-    });
-    const mesh = new THREE.Mesh(planeGeo, planeMat);
-    mesh.rotation.x = Math.PI * -.5;
-    mesh.position.y = -0.2; // FIX: hardcoded value
-    scene.add(mesh);
-}
-
-function renderModelWithMaterial(objectPath, materialPath, usePlane, planeColor, scene, camera, controls) {
+function renderModelWithMaterial(objectPath, materialPath, scene, camera, controls) {
     const mtlLoader = new MTLLoader();
     mtlLoader.load(materialPath, (mtlParseResult) => {
         const objLoader = new OBJLoader2();
@@ -89,19 +74,11 @@ function renderModelWithMaterial(objectPath, materialPath, usePlane, planeColor,
             controls.maxDistance = boxSize * 10;
             controls.target.copy(boxCenter);
             controls.update();
-
-            if (usePlane) {
-                if (planeColor) {
-                    addPlane(boxSize, scene, planeColor);
-                } else {
-                    addPlane(boxSize, scene, '#1A1A1A')
-                }
-            }
         });
     });
 }
 
-function renderModelWithoutMaterial(objectPath, usePlane, planeColor, scene, camera, controls) {
+function renderModelWithoutMaterial(objectPath, scene, camera, controls) {
 
     const objLoader = new OBJLoader2();
     objLoader.load(objectPath, (root) => {
@@ -120,15 +97,6 @@ function renderModelWithoutMaterial(objectPath, usePlane, planeColor, scene, cam
         controls.maxDistance = boxSize * 10;
         controls.target.copy(boxCenter);
         controls.update();
-
-        if (usePlane) {
-            if (planeColor) {
-                addPlane(boxSize, scene, planeColor);
-            } else {
-                addPlane(boxSize, scene, '#1A1A1A')
-            }
-        }
-
     });
 
 }
@@ -175,9 +143,9 @@ function renderModel(modelParams) {
     }
 
     if (modelParams.materialPath) {
-        renderModelWithMaterial(modelParams.objectPath, modelParams.materialPath, modelParams.usePlane, modelParams.planeColor, scene, camera, controls);
+        renderModelWithMaterial(modelParams.objectPath, modelParams.materialPath, scene, camera, controls);
     } else {
-        renderModelWithoutMaterial(modelParams.objectPath, modelParams.usePlane, modelParams.planeColor, scene, camera, controls);
+        renderModelWithoutMaterial(modelParams.objectPath, scene, camera, controls);
     }
 
     function resizeRendererToDisplaySize(renderer) {
@@ -197,8 +165,6 @@ function renderModel(modelParams) {
 
     function clickHandler(event) {
         let point = event.intersect.point;
-        let pointString = point.x.toFixed(3) + ", " + point.y.toFixed(3) + ", " + point.z.toFixed(3);
-        // console.log("Click at: " + pointString);
 
         let trigger = true;
         if (trigger) {
@@ -254,6 +220,4 @@ renderModel({
     objectPath: '../public/Windmill/windmill.obj',
     materialPath: '../public/Windmill/windmill-fixed.mtl',
     background: 'black',
-    usePlane: true,
-    planeColor: '#1A1A1A'
 });
