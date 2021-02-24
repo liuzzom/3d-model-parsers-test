@@ -34,7 +34,7 @@ AFRAME.registerComponent("click-handler", {
             let minBoxSize = Math.min(boxSizes.x, boxSizes.y, boxSizes.z);
             let radius = minBoxSize / 25;
 
-            let trigger = false;
+            let trigger = true;
             if (trigger) {
                 let scene = document.getElementById("scene");
                 var marker = document.createElement("a-sphere");
