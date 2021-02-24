@@ -6,11 +6,17 @@ Test per la comparazione di parser Javascript di file OBJ. Sono stati creati tra
 - BabylonJS
 
 ## WebGL
-- html: https://github.com/liuzzom/obj-parser-test/blob/main/webgl/webgl-obj.html
-- js: https://github.com/liuzzom/obj-parser-test/blob/main/webgl/js/webgl-obj.js
+- html: https://github.com/liuzzom/3d-model-parsers-test/blob/main/webgl/webgl-obj.html
+- js: https://github.com/liuzzom/3d-model-parsers-test/blob/main/webgl/js/webgl-obj.js
 
-## Three.js
-- html: https://github.com/liuzzom/obj-parser-test/blob/main/threejs/three-obj.html
+## WebGL + Leaflet
+
+- html: https://github.com/liuzzom/3d-model-parsers-test/blob/main/webgl/webgl-leaflet-obj.html
+- js: https://github.com/liuzzom/3d-model-parsers-test/blob/main/threejs/threejs-obj/js/three-obj.js
+
+## Three.js (OBJ)
+
+- html: https://github.com/liuzzom/3d-model-parsers-test/blob/main/threejs/threejs-obj/three-obj.html
 - js: https://github.com/liuzzom/obj-parser-test/blob/main/threejs/js/three-obj.js
 
 ## A-Frame
@@ -37,16 +43,14 @@ Test per la comparazione di parser Javascript di file OBJ. Sono stati creati tra
 
 ## TO DO
 
-- Iniziare la Presentazione
+- Aggiornare Link Repo README
+- Presentazione
   - Progettazione
-    - Analisi Requisiti
+    - SDD (Parte Iniziale)
     - Progettazione Front-End
     - Progettazione Back-End
   - Implementazione
 - Progettazione Front-End
-  - Classi "Manager"
-    - Model Manager
-    - Pointer Manager
+  - Classe `WaldoClient`
 - Vedere GSON
-- Tutorial Angular
-- Vedere come pubblicare un componente (???) tramite npm
+- Vedere come pubblicare un modulo (???) tramite npm

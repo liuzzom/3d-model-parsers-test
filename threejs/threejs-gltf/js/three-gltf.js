@@ -4,6 +4,7 @@
 import * as THREE from '../../modules/common/three.module.js';
 import { OrbitControls } from '../../modules/common/OrbitControls.js';
 import { GLTFLoader } from '../../modules/gltf/GLTFLoader.js';
+import { THREEx } from "../../modules/threex.domevents.js";
 
 // will be use to set the pointer radius
 var minBoxSize = undefined;

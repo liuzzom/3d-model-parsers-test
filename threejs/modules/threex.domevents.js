@@ -1,3 +1,5 @@
+import * as THREE from './common/three.module.js';
+
 // This THREEx helper makes it easy to handle the mouse events in your 3D scene
 //
 // * CHANGES NEEDED
@@ -448,3 +450,5 @@ THREEx.DomEvents.prototype._onTouchEvent	= function(eventName, domEvent)
 	var mouseY	= -(domEvent.touches[ 0 ].pageY / window.innerHeight) * 2 + 1;
 	this._onEvent(eventName, mouseX, mouseY, domEvent);	
 }
+
+export { THREEx };

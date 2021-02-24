@@ -1,10 +1,12 @@
-// WebGL - load obj - w/mtl, normal maps
-// from https://webglfundamentals.org/webgl/webgl-load-obj-w-mtl-w-normal-maps.html
+/**
+ * WebGL: Load OBJ with MTL and normal maps
+ * from https://webglfundamentals.org/webgl/webgl-load-obj-w-mtl-w-normal-maps.html
+ *
+ * This is not a full .obj parser.
+ * see http://paulbourke.net/dataformats/obj/
+ */
 
 "use strict";
-
-// This is not a full .obj parser.
-// see http://paulbourke.net/dataformats/obj/
 
 function parseOBJ(text) {
     // because indices are base 1 let's just fill in the 0th data
@@ -316,7 +318,13 @@ function generateTangents(position, texcoord, indices) {
     return tangents;
 }
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 async function main() {
+    // workaround to avoid "not defined" error
+    // await sleep(100);
     // Get A WebGL context
     /** @type {HTMLCanvasElement} */
     const canvas = document.querySelector("#canvas");

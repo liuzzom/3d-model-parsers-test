@@ -634,7 +634,7 @@ async function main(gl) {
  * The resize is caused also by zoom, dragging and double click
  * A not-navigation provider does not need them
  */
-var leafletMap = L.map('map', { zoomControl: false }).setView([50.00, 14.44], 9);
+const leafletMap = L.map('map', {zoomControl: false}).setView([50.00, 14.44], 9);
 leafletMap.dragging.disable();
 
 L.canvasLayer()
@@ -643,22 +643,22 @@ L.canvasLayer()
 
 function onDrawLayer(info) {
     console.log("onDrawLayer")
-    var gl = info.canvas.getContext('webgl');
+    let gl = info.canvas.getContext('webgl');
     main(gl);
 }
 
 // Click Handler
-var mouseDownTime = undefined;
+let mouseDownTime = undefined;
 
 function onMapClick(e) {
     console.log("You clicked the map at " + e.latlng.toString());
 
     let trigger = true;
     if (trigger) {
-        var lat = e.latlng["lat"];
-        var lng = e.latlng["lng"];
+        let lat = e.latlng["lat"];
+        let lng = e.latlng["lng"];
 
-        var pos = L.latLng([lat, lng]);
+        let pos = L.latLng([lat, lng]);
         L.marker(pos).addTo(leafletMap);
     }
 }
@@ -668,9 +668,9 @@ leafletMap.on('mousedown', function () {
 });
 
 leafletMap.on('mouseup', function (event) {
-    var mouseUpTime = new Date().getTime();
+    let mouseUpTime = new Date().getTime();
     // compute the difference between press and release
-    var timeDiff = mouseUpTime - mouseDownTime;
+    let timeDiff = mouseUpTime - mouseDownTime;
     console.log(timeDiff);
 
     // if press and release occur within 150 ms

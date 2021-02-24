@@ -3,6 +3,7 @@ import { OrbitControls } from '../../modules/common/OrbitControls.js';
 import { OBJLoader2 } from '../../modules/webgl/OBJLoader2.js';
 import { MTLLoader } from '../../modules/webgl/MTLLoader.js';
 import { MtlObjBridge } from '../../modules/webgl/MtlObjBridge.js';
+import { THREEx } from "../../modules/threex.domevents.js";
 
 // will be use to set the pointer radius
 var minBoxSize = undefined;
@@ -196,7 +197,6 @@ function renderModel(modelParams) {
             clickHandler(event);
         }
     });
-
 
     function render() {
 
