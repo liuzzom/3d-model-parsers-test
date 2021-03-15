@@ -5,8 +5,13 @@
  * This is not a full .obj parser.
  * see http://paulbourke.net/dataformats/obj/
  */
-
 "use strict";
+
+import { M4 } from './M4.js';
+// import { WebGLUtils } from './WebGLUtils.js'
+
+const m4 = new M4();
+// const webglUtils = new WebGLUtils();
 
 function parseOBJ(text) {
     // because indices are base 1 let's just fill in the 0th data
@@ -306,10 +311,7 @@ function generateTangents(position, texcoord, indices) {
 
         const f = 1.0 / (duv12[0] * duv13[1] - duv13[0] * duv12[1]);
         const tangent = Number.isFinite(f)
-            ? m4.normalize(m4.scaleVector(m4.subtractVectors(
-                m4.scaleVector(dp12, duv13[1]),
-                m4.scaleVector(dp13, duv12[1]),
-            ), f))
+            ? m4.normalize(m4.scaleVector(m4.subtractVectors(m4.scaleVector(dp12, duv13[1]), m4.scaleVector(dp13, duv12[1])), f))
             : [1, 0, 0];
 
         tangents.push(...tangent, ...tangent, ...tangent);

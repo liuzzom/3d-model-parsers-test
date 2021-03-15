@@ -8,27 +8,27 @@
     <title>glTF Test</title>
     <meta name="description" content="OBJ Test">
 
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="/a-frame/js/aframe.min.js"></script>
     <script src="/a-frame/js/a-frame-event_handler.js"></script>
 </head>
 
 <body>
-    <a-scene id="scene" cursor="rayOrigin: mouse" raycaster="objects: .clickable">
-        <!-- Assets definition -->
-        <a-assets>
-            <a-asset-item id="object-ref" src="../public/BoomBox/BoomBox.gltf"></a-asset-item>
-        </a-assets>
+<a-scene id="scene" cursor="rayOrigin: mouse" raycaster="objects: .clickable">
+    <!-- Assets definition -->
+    <a-assets>
+        <a-asset-item id="object-ref" src="../public/BoomBox/BoomBox.gltf"></a-asset-item>
+    </a-assets>
 
-        <!-- Using the asset management system. -->
-        <a-gltf-model id="model" class="clickable" src="#object-ref" click-handler position-setter></a-gltf-model>
+    <!-- Using the asset management system. -->
+    <a-gltf-model id="model" class="clickable" src="#object-ref" click-handler position-setter></a-gltf-model>
 
-        <!-- Camera -->
-        <a-camera id="camera" position="0 0 0">
-        </a-camera>
+    <!-- Camera -->
+    <a-camera id="camera" position="0 0 0">
+    </a-camera>
 
-        <!-- Environment elements-->
-        <a-sky id="sky" color="#000000"></a-sky>
-    </a-scene>
+    <!-- Environment elements-->
+    <a-sky id="sky" color="#000000"></a-sky>
+</a-scene>
 </body>
 
 </html>

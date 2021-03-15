@@ -9,7 +9,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "pdf-lib": "^1.16.0",
+    "webgl.js": "^2.1.2"
   },
   "devDependencies": {
     "typescript": "^4.1.2"
