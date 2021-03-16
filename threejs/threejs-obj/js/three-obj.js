@@ -1,8 +1,8 @@
 import * as THREE from '../../modules/common/three.module.js';
 import { OrbitControls } from '../../modules/common/OrbitControls.js';
-import { OBJLoader2 } from '../../modules/webgl/OBJLoader2.js';
-import { MTLLoader } from '../../modules/webgl/MTLLoader.js';
-import { MtlObjBridge } from '../../modules/webgl/MtlObjBridge.js';
+import { OBJLoader2 } from '../../modules/obj/OBJLoader2.js';
+import { MTLLoader } from '../../modules/obj/MTLLoader.js';
+import { MtlObjBridge } from '../../modules/obj/MtlObjBridge.js';
 import { THREEx } from "../../modules/threex.domevents.js";
 
 // will be use to set the pointer radius

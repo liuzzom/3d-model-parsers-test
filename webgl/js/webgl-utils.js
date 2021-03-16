@@ -52,7 +52,7 @@
   }
 
   if (!isInIFrame()) {
-    console.log("%c%s", 'color:blue;font-weight:bold;', 'for more about webgl-utils.js see:');  // eslint-disable-line
+    console.log("%c%s", 'color:blue;font-weight:bold;', 'for more about obj-utils.js see:');  // eslint-disable-line
     console.log("%c%s", 'color:blue;font-weight:bold;', 'https://webglfundamentals.org/webgl/lessons/webgl-boilerplate.html');  // eslint-disable-line
   }
 
@@ -257,7 +257,7 @@
    * Creates setter functions for all uniforms of a shader
    * program.
    *
-   * @see {@link module:webgl-utils.setUniforms}
+   * @see {@link module:obj-utils.setUniforms}
    *
    * @param {WebGLProgram} program the program to create setters for.
    * @returns {Object.<string, function>} an object with a setter by name for each uniform
@@ -503,7 +503,7 @@
    * Creates setter functions for all attributes of a shader
    * program. You can pass this to {@link module:webgl-utils.setBuffersAndAttributes} to set all your buffers and attributes.
    *
-   * @see {@link module:webgl-utils.setAttributes} for example
+   * @see {@link module:obj-utils.setAttributes} for example
    * @param {WebGLProgram} program the program to create setters for.
    * @return {Object.<string, function>} an object with a setter for each attribute by name.
    * @memberOf module:webgl-utils
@@ -602,7 +602,7 @@
    *       },
    *     };
    *
-   * @param {Object.<string, function>|model:webgl-utils.ProgramInfo} setters Attribute setters as returned from createAttributeSetters or a ProgramInfo as returned {@link module:webgl-utils.createProgramInfo}
+   * @param {Object.<string, function>|model:obj-utils.ProgramInfo} setters Attribute setters as returned from createAttributeSetters or a ProgramInfo as returned {@link module:webgl-utils.createProgramInfo}
    * @param {Object.<string, module:webgl-utils.AttribInfo>} attribs AttribInfos mapped by attribute name.
    * @memberOf module:webgl-utils
    * @deprecated use {@link module:webgl-utils.setBuffersAndAttributes}
@@ -647,7 +647,7 @@
    * @param {WebGLRenderingContext} gl The WebGLRenderingContext
    *        to use.
    * @param {Object.<string, function>| module:webgl-utils.ProgramInfo} programInfo as returned from createProgramInfo or Attribute setters as returned from createAttributeSetters
-   * @param {module:webgl-utils:BufferInfo} bufferInfo BufferInfo as returned from createBufferInfoFromArrays etc...
+   * @param {module:obj-utils:BufferInfo} bufferInfo BufferInfo as returned from createBufferInfoFromArrays etc...
    * @param {WebGLBuffer} [indices] an optional ELEMENT_ARRAY_BUFFER of indices
    */
   function createVAOFromBufferInfo(gl, programInfo, bufferInfo) {
@@ -976,7 +976,7 @@
    *        a_color:    { numComponents: 4, type: gl.UNSIGNED_BYTE, normalize: true,  buffer: WebGLBuffer, },
    *      };
    *
-   * @param {WebGLRenderingContext} gl The webgl rendering context.
+   * @param {WebGLRenderingContext} gl The obj rendering context.
    * @param {Object.<string, array|typedarray>} arrays The arrays
    * @param {Object.<string, string>} [opt_mapping] mapping from attribute name to array name.
    *     if not specified defaults to "a_name" -> "name".
@@ -1070,7 +1070,7 @@
    * Creates a BufferInfo from an object of arrays.
    *
    * This can be passed to {@link module:webgl-utils.setBuffersAndAttributes} and to
-   * {@link module:webgl-utils:drawBufferInfo}.
+   * {@link module:obj-utils:drawBufferInfo}.
    *
    * Given an object like
    *
@@ -1331,7 +1331,7 @@
   const isEdge = !isIE && !!window.StyleMedia;
   if (isEdge) {
     // Hack for Edge. Edge's WebGL implmentation is crap still and so they
-    // only respond to "experimental-webgl". I don't want to clutter the
+    // only respond to "experimental-obj". I don't want to clutter the
     // examples with that so his hack works around it
     HTMLCanvasElement.prototype.getContext = function(origFn) {
       return function() {
@@ -1339,7 +1339,7 @@
         const type = args[0];
         if (type === 'webgl') {
           args = [].slice.call(arguments);
-          args[0] = 'experimental-webgl';
+          args[0] = 'experimental-obj';
         }
         return origFn.apply(this, args);
       };

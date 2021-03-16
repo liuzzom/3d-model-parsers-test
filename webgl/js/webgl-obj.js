@@ -8,10 +8,10 @@
 "use strict";
 
 import { M4 } from './M4.js';
-// import { WebGLUtils } from './WebGLUtils.js'
+import { WebGLUtils } from './WebGLUtils.js'
 
 const m4 = new M4();
-// const webglUtils = new WebGLUtils();
+const webglUtils = new WebGLUtils();
 
 function parseOBJ(text) {
     // because indices are base 1 let's just fill in the 0th data
@@ -90,7 +90,7 @@ function parseOBJ(text) {
             const index = objIndex + (objIndex >= 0 ? 0 : objVertexData[i].length);
             webglVertexData[i].push(...objVertexData[i][index]);
             // if this is the position index (index 0) and we parsed
-            // vertex colors then copy the vertex colors to the webgl vertex color data
+            // vertex colors then copy the vertex colors to the obj vertex color data
             if (i === 0 && objColors.length > 1) {
                 geometry.data.color.push(...objColors[index]);
             }
@@ -320,13 +320,8 @@ function generateTangents(position, texcoord, indices) {
     return tangents;
 }
 
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
 async function main() {
-    // workaround to avoid "not defined" error
-    // await sleep(100);
+
     // Get A WebGL context
     /** @type {HTMLCanvasElement} */
     const canvas = document.querySelector("#canvas");
@@ -431,16 +426,24 @@ async function main() {
         }
         return;
     }
-
     const text = await response.text();
     const obj = parseOBJ(text);
+
     const baseHref = new URL(objHref, window.location.href);
+
+    /*
     const matTexts = await Promise.all(obj.materialLibs.map(async filename => {
         const matHref = new URL(filename, baseHref).href;
         const response = await fetch(matHref);
         return await response.text();
     }));
     const materials = parseMTL(matTexts.join('\n'));
+    */
+
+    const mtlHref = '../public/Windmill/windmill.mtl';
+    const mtlResponse = await fetch(mtlHref);
+    const mtlText = await mtlResponse.text();
+    const materials = parseMTL(mtlText);
 
     const textures = {
         defaultWhite: create1PixelTexture(gl, [255, 255, 255, 255]),
@@ -615,7 +618,7 @@ async function main() {
         gl.useProgram(meshProgramInfo.program);
 
         // calls gl.uniform
-        webglUtils.setUniforms(meshProgramInfo, sharedUniforms);
+        WebGLUtils.setUniforms(meshProgramInfo, sharedUniforms);
 
         // compute the world matrix once since all parts
         // are at the same space.
@@ -625,13 +628,13 @@ async function main() {
 
         for (const { bufferInfo, material } of parts) {
             // calls gl.bindBuffer, gl.enableVertexAttribArray, gl.vertexAttribPointer
-            webglUtils.setBuffersAndAttributes(gl, meshProgramInfo, bufferInfo);
+            WebGLUtils.setBuffersAndAttributes(gl, meshProgramInfo, bufferInfo);
             // calls gl.uniform
-            webglUtils.setUniforms(meshProgramInfo, {
+            WebGLUtils.setUniforms(meshProgramInfo, {
                 u_world,
             }, material);
             // calls gl.drawArrays or gl.drawElements
-            webglUtils.drawBufferInfo(gl, bufferInfo);
+            WebGLUtils.drawBufferInfo(gl, bufferInfo);
         }
 
         requestAnimationFrame(render);

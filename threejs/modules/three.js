@@ -10504,7 +10504,7 @@
 	};
 
 	/**
-	 * Uniforms library for shared webgl shaders
+	 * Uniforms library for shared obj shaders
 	 */
 
 	var UniformsLib = {
@@ -13112,7 +13112,7 @@
 	function getShaderErrors(gl, shader, type) {
 		var status = gl.getShaderParameter(shader, 35713);
 		var log = gl.getShaderInfoLog(shader).trim();
-		if (status && log === '') return ''; // --enable-privileged-webgl-extension
+		if (status && log === '') return ''; // --enable-privileged-obj-extension
 		// console.log( '**' + type + '**', gl.getExtension( 'WEBGL_debug_shaders' ).getTranslatedShaderSource( shader ) );
 
 		var source = gl.getShaderSource(shader);
@@ -15524,7 +15524,7 @@
 		var _videoTextures = new WeakMap();
 
 		var _canvas; // cordova iOS (as of 5.0) still uses UIWebView, which provides OffscreenCanvas,
-		// also OffscreenCanvas.getContext("webgl"), but not OffscreenCanvas.getContext("2d")!
+		// also OffscreenCanvas.getContext("obj"), but not OffscreenCanvas.getContext("2d")!
 		// Some implementations may only implement OffscreenCanvas partially (e.g. lacking 2d).
 
 
@@ -17667,7 +17667,7 @@
 			_canvas.addEventListener('webglcontextrestored', onContextRestore, false);
 
 			if (_gl === null) {
-				var contextNames = ['webgl2', 'webgl', 'experimental-webgl'];
+				var contextNames = ['webgl2', 'webgl', 'experimental-obj'];
 
 				if (_this.isWebGL1Renderer === true) {
 					contextNames.shift();
@@ -17682,7 +17682,7 @@
 						throw new Error('Error creating WebGL context.');
 					}
 				}
-			} // Some experimental-webgl implementations do not have getShaderPrecisionFormat
+			} // Some experimental-obj implementations do not have getShaderPrecisionFormat
 
 
 			if (_gl.getShaderPrecisionFormat === undefined) {

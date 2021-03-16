@@ -35,7 +35,7 @@ app.get('/', (req, res) => {
 // ---------- WebGL -----------------------------------------------------------------------------
 
 app.get('/webgl-obj.html', function (req, res) {
-	console.log('request for webgl-obj.html');
+	console.log('request for web-obj.html');
 	res.sendFile(path.join(__dirname, webglDir, 'webgl-obj.html'));
 	console.log('redirect to ' + path.join(__dirname, webglDir, 'webgl-obj.html'));
 });

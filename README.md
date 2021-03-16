@@ -44,13 +44,3 @@ Test per la comparazione di parser Javascript di file OBJ. Sono stati creati tra
 ## TO DO
 
 - Aggiornare Link Repo README
-- Presentazione
-  - Progettazione
-    - SDD (Parte Iniziale)
-    - Progettazione Front-End
-    - Progettazione Back-End
-  - Implementazione
-- Progettazione Front-End
-  - Classe `WaldoClient`
-- Vedere GSON
-- Vedere come pubblicare un modulo (???) tramite npm

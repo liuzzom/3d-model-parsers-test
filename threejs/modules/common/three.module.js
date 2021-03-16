@@ -14122,7 +14122,7 @@ Object.assign( Frustum.prototype, {
 } );
 
 /**
- * Uniforms library for shared webgl shaders
+ * Uniforms library for shared obj shaders
  */
 
 const UniformsLib = {
@@ -18076,7 +18076,7 @@ function getShaderErrors( gl, shader, type ) {
 
 	if ( status && log === '' ) return '';
 
-	// --enable-privileged-webgl-extension
+	// --enable-privileged-obj-extension
 	// console.log( '**' + type + '**', gl.getExtension( 'WEBGL_debug_shaders' ).getTranslatedShaderSource( shader ) );
 
 	const source = gl.getShaderSource( shader );
@@ -21632,7 +21632,7 @@ function WebGLTextures( _gl, extensions, state, properties, capabilities, utils,
 	let _canvas;
 
 	// cordova iOS (as of 5.0) still uses UIWebView, which provides OffscreenCanvas,
-	// also OffscreenCanvas.getContext("webgl"), but not OffscreenCanvas.getContext("2d")!
+	// also OffscreenCanvas.getContext("obj"), but not OffscreenCanvas.getContext("2d")!
 	// Some implementations may only implement OffscreenCanvas partially (e.g. lacking 2d).
 
 	let useOffscreenCanvas = false;
@@ -24698,7 +24698,7 @@ function WebGLRenderer( parameters ) {
 
 		if ( _gl === null ) {
 
-			const contextNames = [ 'webgl2', 'webgl', 'experimental-webgl' ];
+			const contextNames = [ 'webgl2', 'webgl', 'experimental-obj' ];
 
 			if ( _this.isWebGL1Renderer === true ) {
 
@@ -24724,7 +24724,7 @@ function WebGLRenderer( parameters ) {
 
 		}
 
-		// Some experimental-webgl implementations do not have getShaderPrecisionFormat
+		// Some experimental-obj implementations do not have getShaderPrecisionFormat
 
 		if ( _gl.getShaderPrecisionFormat === undefined ) {
 

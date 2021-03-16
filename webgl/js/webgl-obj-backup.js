@@ -1,10 +1,11 @@
-// WebGL - load obj - w/mtl, normal maps
-// from https://webglfundamentals.org/webgl/webgl-load-obj-w-mtl-w-normal-maps.html
-
+/**
+ * WebGL: Load OBJ with MTL and normal maps
+ * from https://webglfundamentals.org/webgl/webgl-load-obj-w-mtl-w-normal-maps.html
+ *
+ * This is not a full .obj parser.
+ * see http://paulbourke.net/dataformats/obj/
+ */
 "use strict";
-
-// This is not a full .obj parser.
-// see http://paulbourke.net/dataformats/obj/
 
 function parseOBJ(text) {
     // because indices are base 1 let's just fill in the 0th data
@@ -313,9 +314,18 @@ function generateTangents(position, texcoord, indices) {
     return tangents;
 }
 
-async function main(gl) {
-    console.log("main");
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
+async function main() {
+    // workaround to avoid "not defined" error
+    // await sleep(100);
+
+    // Get A WebGL context
+    /** @type {HTMLCanvasElement} */
+    const canvas = document.querySelector("#canvas");
+    const gl = canvas.getContext("webgl");
     if (!gl) {
         return;
     }
@@ -416,16 +426,24 @@ async function main(gl) {
         }
         return;
     }
-
     const text = await response.text();
     const obj = parseOBJ(text);
+
     const baseHref = new URL(objHref, window.location.href);
+
+    /*
     const matTexts = await Promise.all(obj.materialLibs.map(async filename => {
         const matHref = new URL(filename, baseHref).href;
         const response = await fetch(matHref);
         return await response.text();
     }));
     const materials = parseMTL(matTexts.join('\n'));
+    */
+
+    const mtlHref = '../public/Windmill/windmill.mtl';
+    const mtlResponse = await fetch(mtlHref);
+    const mtlText = await mtlResponse.text();
+    const materials = parseMTL(mtlText);
 
     const textures = {
         defaultWhite: create1PixelTexture(gl, [255, 255, 255, 255]),
@@ -604,7 +622,7 @@ async function main(gl) {
 
         // compute the world matrix once since all parts
         // are at the same space.
-        // let u_world = m4.yRotation(time);
+        // let u_world = m4.yRotation(time); // Enable Y Rotation
         let u_world = m4.identity();
         u_world = m4.translate(u_world, ...objOffset);
 
@@ -624,61 +642,13 @@ async function main(gl) {
     requestAnimationFrame(render);
 }
 
-/**
- * create the "map" and disable dragging and zooming
- * disabling dragging and zooming is a workaround to prevent render "crash"
- * TO FIX: the rendering "crashes" when a resizing is made
- * The resize is caused also by zoom, dragging and double click
- * A not-navigation provider does not need them
- */
-const leafletMap = L.map('map', {zoomControl: false}).setView([50.00, 14.44], 9);
-leafletMap.dragging.disable();
+main();
 
-L.canvasLayer()
-    .delegate(this) // -- if we do not inherit from L.CanvasLayer we can setup a delegate to receive events from L.CanvasLayer
-    .addTo(leafletMap);
-
-function onDrawLayer(info) {
-    console.log("onDrawLayer")
-    let gl = info.canvas.getContext('webgl');
-    main(gl);
-}
-
-// Click Handler
-let mouseDownTime = undefined;
-
-function onMapClick(e) {
-    console.log("You clicked the map at " + e.latlng.toString());
-
-    let trigger = true;
-    if (trigger) {
-        let lat = e.latlng["lat"];
-        let lng = e.latlng["lng"];
-
-        let pos = L.latLng([lat, lng]);
-        L.marker(pos).addTo(leafletMap);
-    }
-}
-
-leafletMap.on('mousedown', function () {
-    mouseDownTime = new Date().getTime();
-});
-
-leafletMap.on('mouseup', function (event) {
-    let mouseUpTime = new Date().getTime();
-    // compute the difference between press and release
-    let timeDiff = mouseUpTime - mouseDownTime;
-    console.log(timeDiff);
-
-    // if press and release occur within 150 ms
-    //  we consider the event as a click
-    if (timeDiff <= 150) {
-        console.log("click detected");
-        onMapClick(event)
-    }
-});
 
 // This is needed if the images are not on the same domain
+// NOTE: The server providing the images must give CORS permissions
+// in order to be able to use the image with WebGL. Most sites
+// do NOT give permission.
 // See: https://webglfundamentals.org/webgl/lessons/webgl-cors-permission.html
 function requestCORSIfNotSameOrigin(img, url) {
     if ((new URL(url, window.location.href)).origin !== window.location.origin) {
