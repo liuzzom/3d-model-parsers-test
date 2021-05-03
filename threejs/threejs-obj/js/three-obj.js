@@ -159,23 +159,30 @@ function renderModel(modelParams) {
     }
 
     // Click Handler
-    var domEvents = new THREEx.DomEvents(camera, renderer.domElement);
-    var mouseDownTime = undefined;
+    let domEvents = new THREEx.DomEvents(camera, renderer.domElement);
+    let mouseDownTime = undefined;
+
+    function showPointer(pointer){
+        let radius = minBoxSize/25;
+
+        const geometry = new THREE.SphereGeometry(radius, 32, 32); // FIX: hard-coded division value
+        const material = new THREE.MeshBasicMaterial({ color: 0xcc0000 });
+
+        const circle = new THREE.Mesh(geometry, material);
+        circle.position.x = pointer.x.toFixed(3);
+        circle.position.y = pointer.y.toFixed(3);
+        circle.position.z = pointer.z.toFixed(3);
+
+        console.log(`x:${circle.position.x}, y:${circle.position.y}, z:${circle.position.z}`);
+        scene.add(circle);
+    }
 
     function clickHandler(event) {
         let point = event.intersect.point;
 
         let trigger = true;
         if (trigger) {
-            const geometry = new THREE.SphereGeometry(minBoxSize/25, 32, 32); // FIX: hard-coded division value
-            const material = new THREE.MeshBasicMaterial({ color: 0xcc0000 });
-            const circle = new THREE.Mesh(geometry, material);
-            circle.position.x = point.x.toFixed(3);
-            circle.position.y = point.y.toFixed(3);
-            circle.position.z = point.z.toFixed(3);
-
-            console.log(`x:${circle.position.x}, y:${circle.position.y}, z:${circle.position.z}`);
-            scene.add(circle);
+            showPointer(point);
         }
     }
 
@@ -184,10 +191,9 @@ function renderModel(modelParams) {
     });
 
     domEvents.addEventListener(scene, 'mouseup', function (event) {
-        var mouseUpTime = new Date().getTime();
+        let mouseUpTime = new Date().getTime();
         // compute the difference between press and release
-        var timeDiff = mouseUpTime - mouseDownTime;
-        // console.log(timeDiff);
+        let timeDiff = mouseUpTime - mouseDownTime;
 
         // if press and release occur within 150 ms
         //  we consider the event as a click
@@ -196,6 +202,19 @@ function renderModel(modelParams) {
             clickHandler(event);
         }
     });
+
+    // Mocked Pointers
+    const pointers = [
+        {x: 2.337, y: 9.857, z: 1.337},
+        {x: 2.383, y: 5.318, z: 3.441},
+    ]
+
+    // Wait for some time and then call showPointer for every pointer
+    setTimeout(() => {
+        for(let pointer of pointers){
+            showPointer(pointer);
+        }
+    }, 125);
 
     function render() {
 

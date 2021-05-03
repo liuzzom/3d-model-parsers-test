@@ -79,7 +79,7 @@ function main(){
         {x: 2.380, y: 5.220, z: -10.323},
     ]
 
-    // wait for some time and then call showPointer for every pointer
+    // Wait for some time and then call showPointer for every pointer
     setTimeout(() => {
         for(let pointer of pointers){
             showPointer(pointer);
