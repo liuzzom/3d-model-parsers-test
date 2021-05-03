@@ -63,8 +63,6 @@ function renderModelWithMaterial(objectPath, materialPath, scene, camera, contro
             const boxSize = box.getSize(new THREE.Vector3()).length();
             const boxSizes = box.getSize(new THREE.Vector3());
             minBoxSize = Math.min(boxSizes.x, boxSizes.y, boxSizes.z);
-            // console.log(boxSizes);
-            // console.log(minBoxSize);
 
             const boxCenter = box.getCenter(new THREE.Vector3());
 
@@ -176,6 +174,7 @@ function renderModel(modelParams) {
             circle.position.y = point.y.toFixed(3);
             circle.position.z = point.z.toFixed(3);
 
+            console.log(`x:${circle.position.x}, y:${circle.position.y}, z:${circle.position.z}`);
             scene.add(circle);
         }
     }
@@ -217,7 +216,7 @@ function renderModel(modelParams) {
 
 renderModel({
     selector: '#c',
-    objectPath: '../public/Windmill/windmill.obj',
-    materialPath: '../public/Windmill/windmill-fixed.mtl',
+    objectPath: 'http://localhost:5000/public/Windmill/windmill.obj',
+    materialPath: 'http://localhost:5000/public/Windmill/windmill-fixed.mtl',
     background: 'black',
 });

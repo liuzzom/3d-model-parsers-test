@@ -3,35 +3,35 @@
 
 <head>
     <meta charset="utf-8">
-    <link rel="shortcut icon" type="image/x-icon" href="/public/favicon.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="/public/favicon.ico"/>
 
     <title>OBJ Test</title>
     <meta name="description" content="OBJ Test">
 
     <script src="/a-frame/js/aframe.min.js"></script>
-    <script src="/a-frame/js/a-frame-event_handler.js"></script>
 </head>
 
 <body>
-    <a-scene id="scene" cursor="rayOrigin: mouse" raycaster="objects: .clickable">
-        <!-- Assets definition -->
-        <a-assets>
-            <a-asset-item id="object-ref" src="/public/Windmill/windmill.obj"></a-asset-item>
-            <a-asset-item id="material-ref" src="/public/Windmill/windmill-fixed.mtl"></a-asset-item>
-        </a-assets>
+<a-scene id="scene" cursor="rayOrigin: mouse" raycaster="objects: .clickable">
+    <!-- Assets definition -->
+    <a-assets>
+        <a-asset-item id="object-ref" src="/public/Windmill/windmill.obj"></a-asset-item>
+        <a-asset-item id="material-ref" src="/public/Windmill/windmill-fixed.mtl"></a-asset-item>
+    </a-assets>
 
-        <!-- Using the asset management system. -->
-        <a-obj-model id="model" class="clickable" src="#object-ref" mtl="#material-ref" rotation="0 0 0" click-handler
-        position-setter>
-        </a-obj-model>
+    <!-- Using the asset management system. -->
+    <a-obj-model id="model" class="clickable" src="#object-ref" mtl="#material-ref" rotation="0 0 0" click-handler
+                 position-setter>
+    </a-obj-model>
 
-        <!-- Camera -->
-        <a-camera wasd-controls="fly:true" position="0 0 0 ">
-        </a-camera>
+    <!-- Camera -->
+    <a-camera wasd-controls="fly:true" position="0 0 0">
+    </a-camera>
 
-        <!-- Environment elements-->
-        <a-sky id="sky" color="#000000"></a-sky>
-    </a-scene>
+    <!-- Environment elements-->
+    <a-sky id="sky" color="#000000"></a-sky>
+</a-scene>
+
+<script src="/a-frame/js/a-frame-event_handler.js"></script>
 </body>
-
 </html>

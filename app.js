@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-const port = 3000;
+const port = 5000;
 
 // -----------------------------------------------------------------------------------------------
 
@@ -142,12 +142,6 @@ app.get('/astronaut.html', function (req, res) {
 });
 
 // -----------------------------------------------------------------------------------------------
-
-app.get('/test.html', function(req, res){
-	console.log('request for test.html');
-	res.sendFile(path.join(__dirname, 'test.html'));
-	console.log('redirect to ' + path.join(__dirname, 'test.html'));
-});
 
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(express.static('.'));
